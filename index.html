@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>GradFare — Graduation & Ceremony Event Management | Powered by SENTRi</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@400;700;900&display=swap" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--warm:#e8622c;--gold:#f5a623;--cream:#fef7f0;--dark:#1a0e08;--navy:#0f172a;--surface:#fff;--text:#2d1810;--sub:#7a5a45;--muted:#b89a80;--r:16px;--font:'Outfit',sans-serif;--disp:'Playfair Display',serif}
+html{scroll-behavior:smooth}body{font-family:var(--font);color:var(--text);background:#fff;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+@keyframes fadeUp{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:translateY(0)}}
+@keyframes float{0%,100%{transform:translateY(0) rotate(0deg)}50%{transform:translateY(-12px) rotate(2deg)}}
+@keyframes floatSlow{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+@keyframes confetti-fall{0%{transform:translateY(-10vh) rotate(0deg);opacity:.7}100%{transform:translateY(110vh) rotate(720deg);opacity:0}}
+@keyframes capToss{0%{transform:translateY(0) rotate(0deg)}30%{transform:translateY(-24px) rotate(-12deg)}60%{transform:translateY(-10px) rotate(6deg)}100%{transform:translateY(0) rotate(0deg)}}
+@keyframes pulse-glow{0%,100%{box-shadow:0 0 20px rgba(232,98,44,.15)}50%{box-shadow:0 0 40px rgba(232,98,44,.3)}}
+@keyframes scroll-hint{0%,100%{transform:translateY(0);opacity:1}50%{transform:translateY(8px);opacity:.5}}
+.reveal{opacity:0;transform:translateY(40px);transition:all .8s cubic-bezier(.22,1,.36,1)}.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal-d1{transition-delay:.1s}.reveal-d2{transition-delay:.2s}.reveal-d3{transition-delay:.3s}.reveal-d4{transition-delay:.4s}
+.confetti-bg{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;overflow:hidden}
+.confetti-bg .p{position:absolute;opacity:.35;animation:confetti-fall linear infinite}
+
+/* NAV */
+.nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:16px 40px;display:flex;align-items:center;justify-content:space-between;transition:all .3s}
+.nav.scrolled{background:rgba(255,255,255,.92);backdrop-filter:blur(20px);box-shadow:0 1px 20px rgba(0,0,0,.06);padding:12px 40px}
+.nav-brand{display:flex;align-items:center;gap:10px}
+.nav-logo{position:relative;width:36px;height:36px;background:linear-gradient(135deg,var(--warm),var(--gold));border-radius:10px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:14px;letter-spacing:-1px}
+.nav-cap{position:absolute;top:-9px;left:50%;transform:translateX(-50%);animation:capToss 3s ease-in-out infinite}
+.nav-name{font-size:20px;font-weight:700;letter-spacing:-.5px;color:var(--dark)}.nav-name span{font-weight:400;font-size:12px;color:var(--muted);margin-left:4px}
+.nav-links{display:flex;align-items:center;gap:32px}
+.nav-links a{text-decoration:none;font-size:14px;font-weight:500;color:var(--sub);transition:color .2s}.nav-links a:hover{color:var(--warm)}
+.nav-cta{background:var(--dark);color:#fff!important;padding:10px 24px;border-radius:980px;font-size:14px;font-weight:600;transition:all .2s}.nav-cta:hover{background:var(--warm);transform:translateY(-1px);box-shadow:0 4px 20px rgba(232,98,44,.3)}
+.nav-countdown{background:linear-gradient(135deg,var(--warm),var(--gold));color:#fff!important;padding:8px 18px;border-radius:980px;font-size:13px;font-weight:600;transition:all .2s}.nav-countdown:hover{transform:translateY(-1px);box-shadow:0 4px 16px rgba(232,98,44,.35)}
+
+/* COUNTDOWN DEMO */
+.cd-demo{padding:100px 40px;background:linear-gradient(180deg,#fff 0%,var(--cream) 100%);position:relative;overflow:hidden}
+.cd-demo::before{content:'';position:absolute;top:50%;left:50%;width:600px;height:600px;transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(circle,rgba(232,98,44,.06),transparent 70%)}
+.cd-box{max-width:600px;margin:0 auto;background:#fff;border-radius:24px;box-shadow:0 20px 80px rgba(232,98,44,.1);padding:48px 40px;text-align:center;position:relative;overflow:hidden}
+.cd-box::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--warm),var(--gold))}
+.cd-display{display:flex;justify-content:center;gap:16px;margin:32px 0 12px}
+.cd-unit{display:flex;flex-direction:column;align-items:center}
+.cd-num{font-size:clamp(48px,8vw,72px);font-weight:900;background:linear-gradient(135deg,var(--warm),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1;font-family:var(--font);letter-spacing:-2px}
+.cd-lbl{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--muted);margin-top:6px}
+.cd-sep{font-size:clamp(36px,6vw,56px);font-weight:800;color:var(--muted);line-height:1;padding-top:4px;opacity:.4}
+.cd-controls{display:flex;justify-content:center;gap:12px;margin-top:28px}
+.cd-btn{padding:12px 28px;border-radius:980px;font-size:14px;font-weight:600;cursor:pointer;transition:all .2s;border:none;font-family:var(--font)}
+.cd-btn-start{background:var(--warm);color:#fff}.cd-btn-start:hover{background:#d4551f;box-shadow:0 4px 16px rgba(232,98,44,.3)}
+.cd-btn-pause{background:var(--gold);color:#fff}.cd-btn-pause:hover{background:#e09520}
+.cd-btn-stop{background:var(--surface);color:var(--text);border:1.5px solid rgba(0,0,0,.1)}.cd-btn-stop:hover{border-color:var(--warm);color:var(--warm)}
+.cd-inputs{display:flex;justify-content:center;gap:12px;margin-top:20px}
+.cd-input-group{display:flex;flex-direction:column;align-items:center;gap:4px}
+.cd-input-group label{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.8px;color:var(--muted)}
+.cd-input-group input{width:72px;text-align:center;padding:10px;border:1.5px solid rgba(0,0,0,.08);border-radius:12px;font-size:20px;font-weight:700;font-family:var(--font);color:var(--text);outline:none;transition:all .2s}
+.cd-input-group input:focus{border-color:var(--warm);box-shadow:0 0 0 3px rgba(232,98,44,.1)}
+.cd-status{font-size:13px;font-weight:600;margin-top:16px;height:20px}
+.cd-status-running{color:var(--warm);animation:pulse-glow 2s infinite}
+.cd-status-paused{color:var(--gold)}
+.cd-status-done{color:#30d158}
+
+/* HERO */
+.hero{position:relative;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:120px 40px 80px;background:linear-gradient(180deg,var(--cream) 0%,#fff 100%);overflow:hidden}
+.hero::before{content:'';position:absolute;top:-200px;right:-200px;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(232,98,44,.08),transparent 70%)}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(232,98,44,.08);border:1px solid rgba(232,98,44,.15);padding:8px 20px;border-radius:980px;font-size:13px;font-weight:600;color:var(--warm);margin-bottom:32px;animation:fadeUp .8s ease-out}
+.hero-dot{width:6px;height:6px;border-radius:50%;background:var(--warm);animation:pulse-glow 2s infinite}
+.hero h1{font-family:var(--disp);font-size:clamp(42px,6vw,80px);font-weight:900;line-height:1.05;letter-spacing:-2px;color:var(--dark);max-width:900px;animation:fadeUp .8s ease-out .1s both}
+.hero h1 em{font-style:normal;background:linear-gradient(135deg,var(--warm),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero-sub{font-size:clamp(16px,2vw,20px);color:var(--sub);max-width:600px;margin:24px auto 0;line-height:1.6;animation:fadeUp .8s ease-out .2s both}
+.hero-ctas{display:flex;gap:16px;margin-top:40px;animation:fadeUp .8s ease-out .3s both;flex-wrap:wrap;justify-content:center}
+.btn-hero{padding:16px 36px;border-radius:980px;font-size:16px;font-weight:600;text-decoration:none;transition:all .25s;display:inline-block}
+.btn-hero-primary{background:var(--warm);color:#fff;box-shadow:0 4px 24px rgba(232,98,44,.25)}.btn-hero-primary:hover{background:#d4551f;transform:translateY(-2px);box-shadow:0 8px 32px rgba(232,98,44,.35)}
+.btn-hero-secondary{background:var(--surface);color:var(--dark);border:1.5px solid rgba(0,0,0,.1)}.btn-hero-secondary:hover{border-color:var(--warm);color:var(--warm);transform:translateY(-2px)}
+.hero-scroll{position:absolute;bottom:32px;display:flex;flex-direction:column;align-items:center;gap:4px;color:var(--muted);font-size:12px;font-weight:500;animation:scroll-hint 2s infinite}
+
+/* SHOWCASE */
+.showcase{position:relative;z-index:2;margin-top:-20px;padding:0 40px 80px}
+.showcase-frame{max-width:1100px;margin:0 auto;position:relative}
+.showcase-browser{background:var(--dark);border-radius:16px;overflow:hidden;box-shadow:0 40px 100px rgba(26,14,8,.2);animation:fadeUp 1s ease-out .4s both}
+.showcase-bar{display:flex;align-items:center;gap:8px;padding:14px 20px;background:rgba(255,255,255,.06)}
+.showcase-dot{width:10px;height:10px;border-radius:50%}
+.showcase-url{flex:1;margin-left:12px;background:rgba(255,255,255,.08);border-radius:6px;padding:6px 14px;font-size:12px;color:rgba(255,255,255,.4);font-family:monospace}
+.showcase-img{width:100%;display:block}
+.sfloat{position:absolute;background:#fff;border-radius:14px;box-shadow:0 12px 48px rgba(0,0,0,.12);padding:16px 20px;z-index:3}
+.sfloat-1{top:15%;right:-40px;animation:float 4s ease-in-out infinite}
+.sfloat-2{bottom:22%;left:-36px;animation:floatSlow 5s ease-in-out infinite .5s}
+.sfloat-3{bottom:8%;right:10%;animation:float 4.5s ease-in-out infinite 1s}
+.sf-label{font-size:11px;text-transform:uppercase;letter-spacing:.8px;color:var(--muted);font-weight:600;margin-bottom:4px}
+.sf-value{font-size:24px;font-weight:700;background:linear-gradient(135deg,var(--warm),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.sf-sub{font-size:12px;color:var(--sub);margin-top:2px}
+
+/* PROOF BAR */
+.proof{padding:48px 40px;text-align:center;background:var(--cream)}
+.proof-row{display:flex;justify-content:center;gap:48px;flex-wrap:wrap}
+.proof-num{font-size:36px;font-weight:800;background:linear-gradient(135deg,var(--warm),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.proof-text{font-size:13px;color:var(--sub);margin-top:4px;font-weight:500}
+
+/* SECTIONS */
+.sec-label{font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--warm);text-align:center;margin-bottom:12px}
+.sec-title{font-family:var(--disp);font-size:clamp(32px,4vw,52px);font-weight:900;text-align:center;letter-spacing:-1.5px;color:var(--dark);line-height:1.1}
+.sec-sub{font-size:18px;color:var(--sub);text-align:center;max-width:600px;margin:16px auto 60px;line-height:1.6}
+
+/* FEATURES */
+.features{padding:100px 40px;background:#fff}
+.feat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px;max-width:1100px;margin:0 auto}
+.feat-card{background:var(--cream);border:1px solid rgba(232,98,44,.08);border-radius:var(--r);padding:32px;transition:all .3s;position:relative;overflow:hidden}
+.feat-card:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(232,98,44,.1);border-color:rgba(232,98,44,.2)}
+.feat-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--warm),var(--gold));opacity:0;transition:opacity .3s}.feat-card:hover::before{opacity:1}
+.feat-icon{width:48px;height:48px;border-radius:14px;background:linear-gradient(135deg,var(--warm),var(--gold));display:flex;align-items:center;justify-content:center;margin-bottom:20px;font-size:22px}
+.feat-title{font-size:18px;font-weight:700;margin-bottom:8px;color:var(--dark)}
+.feat-desc{font-size:14px;color:var(--sub);line-height:1.6}
+
+/* HOW IT WORKS */
+.how{padding:100px 40px;background:var(--dark);color:#fff;position:relative;overflow:hidden}
+.how::before{content:'';position:absolute;top:-50%;right:-20%;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(232,98,44,.12),transparent)}
+.how .sec-label{color:var(--gold)}.how .sec-title{color:#fff}.how .sec-sub{color:rgba(255,255,255,.5)}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:32px;max-width:1000px;margin:0 auto;position:relative;z-index:1}
+.step{text-align:center;padding:32px 24px}
+.step-num{width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,var(--warm),var(--gold));display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:800;color:#fff;margin:0 auto 20px;box-shadow:0 4px 20px rgba(232,98,44,.3)}
+.step-title{font-size:17px;font-weight:700;margin-bottom:8px}
+.step-desc{font-size:14px;color:rgba(255,255,255,.5);line-height:1.6}
+
+/* PORTAL PREVIEW */
+.portal-sec{padding:100px 40px;background:var(--cream)}
+.portal-preview{max-width:400px;margin:0 auto;background:#fff;border-radius:24px;box-shadow:0 24px 80px rgba(0,0,0,.1);overflow:hidden;position:relative}
+.portal-preview::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--warm),var(--gold))}
+.pp-hero{background:linear-gradient(135deg,#fef7f0,#fde8d0);padding:32px 24px;text-align:center}
+.pp-logo{width:48px;height:48px;border-radius:14px;background:linear-gradient(135deg,var(--warm),var(--gold));display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:17px;letter-spacing:-1px;margin:0 auto 12px;position:relative}
+.pp-school{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--warm)}
+.pp-event{font-size:20px;font-weight:700;color:var(--dark);margin-top:6px;line-height:1.2}
+.pp-date{font-size:13px;color:var(--sub);margin-top:6px}
+.pp-countdown{display:flex;justify-content:center;gap:8px;margin-top:16px}
+.pp-cd-unit{text-align:center}
+.pp-cd-num{font-size:24px;font-weight:800;background:linear-gradient(135deg,var(--warm),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.pp-cd-label{font-size:8px;text-transform:uppercase;letter-spacing:.5px;color:var(--muted)}
+.pp-cd-sep{font-size:20px;color:var(--muted);padding-top:2px}
+.pp-body{padding:24px}
+.pp-welcome{background:var(--cream);border-radius:12px;padding:16px;text-align:center;margin-bottom:16px}
+.pp-name{font-size:20px;font-weight:700;background:linear-gradient(135deg,var(--warm),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.pp-id{font-size:11px;color:var(--muted);margin-top:2px}
+.pp-dots{display:flex;justify-content:center;gap:5px;margin-top:10px}
+.pp-dot{width:10px;height:10px;border-radius:50%}
+.pp-dot-used{background:var(--warm)}
+.pp-dot-avail{background:#e5e5e7}
+.pp-guest{display:flex;align-items:center;gap:12px;padding:12px;border:1px solid rgba(0,0,0,.05);border-radius:10px;margin-bottom:8px}
+.pp-guest-av{width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,var(--warm),var(--gold));display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:13px;flex-shrink:0}
+.pp-guest-name{font-size:14px;font-weight:600;flex:1}
+.pp-guest-badge{font-size:10px;font-weight:600;padding:2px 8px;border-radius:980px}
+.pp-footer{text-align:center;padding:16px;font-size:10px;color:var(--muted)}
+
+/* PRICING */
+.pricing{padding:100px 40px;background:#fff}
+.price-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;max-width:900px;margin:0 auto}
+.price-card{border:1px solid rgba(0,0,0,.06);border-radius:20px;padding:40px 32px;text-align:center;transition:all .3s;position:relative}
+.price-card.pop{border:2px solid var(--warm);background:var(--cream)}
+.price-card.pop::before{content:'Most Popular';position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,var(--warm),var(--gold));color:#fff;padding:4px 16px;border-radius:980px;font-size:12px;font-weight:700}
+.price-card:hover{transform:translateY(-4px);box-shadow:0 12px 48px rgba(0,0,0,.08)}
+.price-name{font-size:18px;font-weight:700;color:var(--dark);margin-bottom:4px}
+.price-desc{font-size:13px;color:var(--sub);margin-bottom:20px}
+.price-amt{font-size:48px;font-weight:800;color:var(--dark);line-height:1}
+.price-per{font-size:14px;color:var(--sub);margin-bottom:24px}
+.price-list{list-style:none;text-align:left;margin-bottom:28px}
+.price-list li{padding:8px 0;font-size:14px;color:var(--sub);border-bottom:1px solid rgba(0,0,0,.04);display:flex;align-items:center;gap:8px}
+.price-list li::before{content:'✓';color:var(--warm);font-weight:700}
+.price-btn{display:block;padding:14px;border-radius:980px;font-size:15px;font-weight:600;text-decoration:none;text-align:center;transition:all .2s;cursor:pointer;border:none;width:100%;font-family:var(--font)}
+.price-btn-p{background:var(--warm);color:#fff}.price-btn-p:hover{background:#d4551f}
+.price-btn-s{background:#fff;color:var(--dark);border:1.5px solid rgba(0,0,0,.1)}.price-btn-s:hover{border-color:var(--warm);color:var(--warm)}
+
+/* CONTACT SECTION */
+.contact{padding:100px 40px;background:#fff}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;max-width:1000px;margin:0 auto}
+.contact-left{display:flex;flex-direction:column;gap:24px}
+.contact-card{background:var(--cream);border:1px solid rgba(232,98,44,.08);border-radius:16px;padding:28px;transition:all .3s}
+.contact-card:hover{box-shadow:0 8px 32px rgba(232,98,44,.08)}
+.contact-card-icon{font-size:24px;margin-bottom:12px}
+.contact-card-label{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--muted);margin-bottom:4px}
+.contact-card-value{font-size:17px;font-weight:600;color:var(--dark)}
+.contact-card-value a{color:var(--dark);text-decoration:none;transition:color .2s}.contact-card-value a:hover{color:var(--warm)}
+.contact-book{background:linear-gradient(135deg,var(--warm),var(--gold));border-radius:16px;padding:28px;color:#fff;text-align:center;transition:all .3s;cursor:pointer;text-decoration:none;display:block}
+.contact-book:hover{transform:translateY(-3px);box-shadow:0 12px 40px rgba(232,98,44,.3)}
+.contact-book-icon{font-size:32px;margin-bottom:8px}
+.contact-book-title{font-size:18px;font-weight:700;margin-bottom:4px}
+.contact-book-sub{font-size:13px;opacity:.85}
+.contact-form{background:var(--cream);border:1px solid rgba(232,98,44,.08);border-radius:16px;padding:32px}
+.contact-form h3{font-size:20px;font-weight:700;margin-bottom:20px;color:var(--dark)}
+.cf-group{margin-bottom:16px}
+.cf-group label{display:block;font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.8px;color:var(--muted);margin-bottom:6px}
+.cf-group input,.cf-group textarea,.cf-group select{width:100%;padding:12px 16px;border:1.5px solid rgba(0,0,0,.08);border-radius:12px;font-size:15px;font-family:var(--font);color:var(--text);outline:none;transition:all .2s;background:#fff;resize:vertical}
+.cf-group input:focus,.cf-group textarea:focus,.cf-group select:focus{border-color:var(--warm);box-shadow:0 0 0 3px rgba(232,98,44,.1)}
+.cf-group textarea{min-height:100px}
+.cf-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.cf-submit{width:100%;padding:14px;border-radius:980px;font-size:15px;font-weight:600;cursor:pointer;transition:all .2s;border:none;font-family:var(--font);background:var(--warm);color:#fff;margin-top:8px}.cf-submit:hover{background:#d4551f;box-shadow:0 4px 16px rgba(232,98,44,.3)}
+.cf-success{display:none;text-align:center;padding:32px;color:var(--warm)}
+.cf-success-icon{font-size:48px;margin-bottom:12px}
+.cf-success-title{font-size:20px;font-weight:700;color:var(--dark);margin-bottom:4px}
+.cf-success-sub{font-size:14px;color:var(--sub)}
+@media(max-width:768px){.contact-grid{grid-template-columns:1fr}.cf-row{grid-template-columns:1fr}}
+
+/* FINAL CTA */
+.cta-final{padding:100px 40px;background:var(--dark);text-align:center;position:relative;overflow:hidden}
+.cta-final::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(232,98,44,.1),transparent 70%)}
+.cta-final h2{font-family:var(--disp);font-size:clamp(32px,4vw,52px);font-weight:900;color:#fff;letter-spacing:-1.5px;position:relative;z-index:1}
+.cta-final h2 em{font-style:normal;background:linear-gradient(135deg,var(--warm),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.cta-final p{color:rgba(255,255,255,.5);font-size:18px;margin:16px auto 36px;max-width:500px;position:relative;z-index:1}
+
+/* FOOTER */
+footer{padding:48px 40px;background:var(--navy);color:rgba(255,255,255,.4);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;font-size:13px}
+.footer-brand{display:flex;align-items:center;gap:8px;color:#fff;font-weight:700;font-size:16px}
+.footer-links{display:flex;gap:24px}.footer-links a{color:rgba(255,255,255,.4);text-decoration:none}.footer-links a:hover{color:#fff}
+
+@media(max-width:768px){
+.nav{padding:12px 20px}.nav-links a:not(.nav-cta){display:none}
+.hero{padding:100px 20px 60px}
+.showcase{padding:0 16px 60px}
+.sfloat{display:none}
+.features,.how,.screenshots,.pricing,.portal-sec,.testimonial{padding:60px 20px}
+.proof-row{gap:24px}
+.steps{grid-template-columns:1fr 1fr}
+.portal-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<!-- CONFETTI -->
+<div class="confetti-bg" id="confetti"></div>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <div class="nav-brand">
+    <div class="nav-logo">
+      <svg class="nav-cap" width="18" height="12" viewBox="0 0 30 20" fill="none"><polygon points="15,0 30,8 15,16 0,8" fill="white" opacity=".95"/><polygon points="15,16 30,8 30,10 15,18 0,10 0,8" fill="white" opacity=".7"/><line x1="26" y1="8" x2="26" y2="16" stroke="white" stroke-width="1.2"/><circle cx="26" cy="16.5" r="1.2" fill="#f5a623"/></svg>
+      GF
+    </div>
+    <span class="nav-name">GradFare<span>by SENTRi</span></span>
+  </div>
+  <div class="nav-links">
+    <a href="#features">Features</a>
+    <a href="#how">How It Works</a>
+    <a href="#portal">Student Portal</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#countdown-demo" class="nav-countdown">⏱ Live Countdown</a>
+    <a href="https://app.gradfare.com" class="nav-cta">Get Started</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge"><span class="hero-dot"></span> Built for every institution that celebrates achievement</div>
+  <h1>Graduation should be a <em>celebration</em>, not a logistical nightmare</h1>
+  <p class="hero-sub">The all-in-one platform that transforms graduation chaos into a seamless, joyful experience — from student registration to the final cap toss. For universities, colleges, academies, and any institution that celebrates achievement.</p>
+  <div class="hero-ctas">
+    <a href="https://app.gradfare.com" class="btn-hero btn-hero-primary">Start Free Trial</a>
+    <a href="#portal" class="btn-hero btn-hero-secondary">See Student Portal</a>
+  </div>
+  <div class="hero-scroll">Scroll to explore<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6,9 12,15 18,9"/></svg></div>
+</section>
+
+<!-- DASHBOARD SHOWCASE -->
+<section class="showcase">
+  <div class="showcase-frame">
+    <div class="showcase-browser reveal">
+      <div class="showcase-bar">
+        <div class="showcase-dot" style="background:#ff5f57"></div>
+        <div class="showcase-dot" style="background:#ffbd2e"></div>
+        <div class="showcase-dot" style="background:#28ca41"></div>
+        <div class="showcase-url">gradium.youruniversity.edu/dashboard</div>
+      </div>
+      <svg viewBox="0 0 1100 580" xmlns="http://www.w3.org/2000/svg" class="showcase-img" style="background:#fef7f0">
+        <defs><linearGradient id="g1" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#e8622c"/><stop offset="50%" stop-color="#f5a623"/><stop offset="100%" stop-color="#e8622c"/></linearGradient><linearGradient id="g2" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#e8622c"/><stop offset="100%" stop-color="#f5a623"/></linearGradient></defs>
+        <rect width="1100" height="3" fill="url(#g1)"/>
+        <!-- Sidebar -->
+        <rect x="0" y="3" width="220" height="577" fill="#fff"/><rect x="220" y="3" width="1" height="577" fill="#f0dcc8" opacity=".5"/>
+        <rect x="20" y="24" width="32" height="32" rx="8" fill="url(#g2)"/><text x="36" y="45" font-family="Outfit" font-size="13" font-weight="800" fill="#fff" text-anchor="middle" letter-spacing="-0.5">GF</text>
+        <text x="60" y="46" font-family="Outfit" font-size="16" font-weight="700" fill="#2d1810">GradFare</text>
+        <text x="20" y="88" font-family="Outfit" font-size="10" font-weight="600" fill="#b89a80" letter-spacing="1">MENU</text>
+        <rect x="12" y="100" width="196" height="32" rx="6" fill="#fef3ea"/>
+        <text x="44" y="120" font-family="Outfit" font-size="13" font-weight="550" fill="#2d1810">Dashboard</text>
+        <text x="44" y="152" font-family="Outfit" font-size="13" fill="#7a5a45">Events</text>
+        <text x="44" y="180" font-family="Outfit" font-size="13" fill="#7a5a45">Students</text>
+        <text x="44" y="208" font-family="Outfit" font-size="13" fill="#7a5a45">Data Import</text>
+        <text x="44" y="236" font-family="Outfit" font-size="13" fill="#7a5a45">Tickets</text>
+        <text x="44" y="264" font-family="Outfit" font-size="13" fill="#7a5a45">Seating</text>
+        <text x="44" y="292" font-family="Outfit" font-size="13" fill="#7a5a45">Program</text>
+        <text x="44" y="320" font-family="Outfit" font-size="13" fill="#7a5a45">Check-in</text>
+        <text x="44" y="348" font-family="Outfit" font-size="13" fill="#7a5a45">Settings</text>
+        <circle cx="30" cy="550" r="8" fill="url(#g2)"/><circle cx="52" cy="550" r="8" fill="#1a1a6e"/><circle cx="74" cy="550" r="8" fill="#2563eb"/><circle cx="96" cy="550" r="8" fill="#1d1d1f"/>
+        <!-- Main -->
+        <text x="252" y="40" font-family="Outfit" font-size="22" font-weight="700" fill="#2d1810">Dashboard</text>
+        <text x="252" y="58" font-family="Outfit" font-size="12" fill="#7a5a45">Overview of all graduation events</text>
+        <!-- Countdown -->
+        <rect x="252" y="74" width="816" height="72" rx="12" fill="#fde8d0" opacity=".4"/>
+        <rect x="252" y="74" width="816" height="3" rx="2" fill="url(#g1)"/>
+        <text x="660" y="98" font-family="Outfit" font-size="11" font-weight="600" fill="#2d1810" text-anchor="middle">Class of 2026 Spring Commencement</text>
+        <text x="610" y="130" font-family="Outfit" font-size="30" font-weight="800" fill="#e8622c" text-anchor="middle">84</text>
+        <text x="637" y="128" font-family="Outfit" font-size="24" fill="#b89a80">:</text>
+        <text x="665" y="130" font-family="Outfit" font-size="30" font-weight="800" fill="#e8622c" text-anchor="middle">06</text>
+        <text x="692" y="128" font-family="Outfit" font-size="24" fill="#b89a80">:</text>
+        <text x="720" y="130" font-family="Outfit" font-size="30" font-weight="800" fill="#e8622c" text-anchor="middle">42</text>
+        <text x="747" y="128" font-family="Outfit" font-size="24" fill="#b89a80">:</text>
+        <text x="775" y="130" font-family="Outfit" font-size="30" font-weight="800" fill="#e8622c" text-anchor="middle">18</text>
+        <!-- Stat cards -->
+        <rect x="252" y="162" width="195" height="80" rx="12" fill="#fff" stroke="#f0dcc8" stroke-width=".5"/>
+        <text x="272" y="186" font-family="Outfit" font-size="10" font-weight="500" fill="#b89a80" letter-spacing=".5">EVENTS</text>
+        <text x="272" y="218" font-family="Outfit" font-size="28" font-weight="700" fill="#2d1810">3</text>
+        <rect x="463" y="162" width="195" height="80" rx="12" fill="#fff" stroke="#f0dcc8" stroke-width=".5"/>
+        <text x="483" y="186" font-family="Outfit" font-size="10" font-weight="500" fill="#b89a80" letter-spacing=".5">STUDENTS</text>
+        <text x="483" y="218" font-family="Outfit" font-size="28" font-weight="700" fill="#2d1810">1,247</text>
+        <rect x="674" y="162" width="195" height="80" rx="12" fill="#fff" stroke="#f0dcc8" stroke-width=".5"/>
+        <text x="694" y="186" font-family="Outfit" font-size="10" font-weight="500" fill="#b89a80" letter-spacing=".5">TICKETS</text>
+        <text x="694" y="218" font-family="Outfit" font-size="28" font-weight="700" fill="#2d1810">4,892</text>
+        <rect x="885" y="162" width="183" height="80" rx="12" fill="#fff" stroke="#f0dcc8" stroke-width=".5"/>
+        <text x="905" y="186" font-family="Outfit" font-size="10" font-weight="500" fill="#b89a80" letter-spacing=".5">CHECK-IN</text>
+        <text x="905" y="218" font-family="Outfit" font-size="28" font-weight="700" fill="#2d1810">0%</text>
+        <!-- Table -->
+        <rect x="252" y="258" width="816" height="310" rx="12" fill="#fff" stroke="#f0dcc8" stroke-width=".5"/>
+        <rect x="252" y="258" width="816" height="32" rx="12" fill="#fef3ea"/>
+        <text x="272" y="279" font-family="Outfit" font-size="10" font-weight="600" fill="#b89a80" letter-spacing=".5">EVENT</text>
+        <text x="540" y="279" font-family="Outfit" font-size="10" font-weight="600" fill="#b89a80" letter-spacing=".5">VENUE</text>
+        <text x="750" y="279" font-family="Outfit" font-size="10" font-weight="600" fill="#b89a80" letter-spacing=".5">DATE</text>
+        <text x="930" y="279" font-family="Outfit" font-size="10" font-weight="600" fill="#b89a80" letter-spacing=".5">STUDENTS</text>
+        <line x1="252" y1="290" x2="1068" y2="290" stroke="#f0dcc8" stroke-width=".5"/>
+        <text x="272" y="316" font-family="Outfit" font-size="13" font-weight="600" fill="#2d1810">Class of 2026 Spring Commencement</text>
+        <text x="540" y="316" font-family="Outfit" font-size="13" fill="#7a5a45">Memorial Stadium</text>
+        <text x="750" y="316" font-family="Outfit" font-size="13" fill="#7a5a45">May 15, 2026</text>
+        <text x="930" y="316" font-family="Outfit" font-size="13" fill="#7a5a45">892</text>
+        <line x1="262" y1="330" x2="1058" y2="330" stroke="#f7ead9" stroke-width=".5"/>
+        <text x="272" y="356" font-family="Outfit" font-size="13" font-weight="600" fill="#2d1810">College of Engineering Graduation</text>
+        <text x="540" y="356" font-family="Outfit" font-size="13" fill="#7a5a45">Innovation Center</text>
+        <text x="750" y="356" font-family="Outfit" font-size="13" fill="#7a5a45">May 16, 2026</text>
+        <text x="930" y="356" font-family="Outfit" font-size="13" fill="#7a5a45">214</text>
+        <line x1="262" y1="370" x2="1058" y2="370" stroke="#f7ead9" stroke-width=".5"/>
+        <text x="272" y="396" font-family="Outfit" font-size="13" font-weight="600" fill="#2d1810">Graduate School Hooding Ceremony</text>
+        <text x="540" y="396" font-family="Outfit" font-size="13" fill="#7a5a45">Grand Hall</text>
+        <text x="750" y="396" font-family="Outfit" font-size="13" fill="#7a5a45">Jun 1, 2026</text>
+        <text x="930" y="396" font-family="Outfit" font-size="13" fill="#7a5a45">141</text>
+      </svg>
+    </div>
+    <div class="sfloat sfloat-1"><div class="sf-label">Students Imported</div><div class="sf-value">1,247</div><div class="sf-sub">from Excel in 3 seconds</div></div>
+    <div class="sfloat sfloat-2"><div class="sf-label">Check-in Speed</div><div class="sf-value">&lt;2s</div><div class="sf-sub">per guest via QR scan</div></div>
+    <div class="sfloat sfloat-3"><div class="sf-label">Tickets Generated</div><div class="sf-value">4,892</div><div class="sf-sub">with QR codes + PDF</div></div>
+  </div>
+</section>
+
+<!-- PROOF -->
+<section class="proof">
+  <div class="proof-row reveal">
+    <div><div class="proof-num">5,000+</div><div class="proof-text">Students per event</div></div>
+    <div><div class="proof-num">4</div><div class="proof-text">Data import methods</div></div>
+    <div><div class="proof-num">&lt;2s</div><div class="proof-text">QR check-in per guest</div></div>
+    <div><div class="proof-num">100%</div><div class="proof-text">Student self-service</div></div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="features" id="features">
+  <div class="sec-label reveal">Features</div>
+  <h2 class="sec-title reveal">Everything you need,<br/>nothing you don't</h2>
+  <p class="sec-sub reveal">One platform replaces your spreadsheets, email chains, and paper tickets.</p>
+  <div class="feat-grid">
+    <div class="feat-card reveal reveal-d2"><div class="feat-icon">⏱️</div><div class="feat-title">Live Countdown Timer</div><div class="feat-desc">A beautiful countdown on both admin dashboard and student portal builds excitement. Days, hours, minutes, seconds until the big moment. <a href="#countdown-demo" style="color:var(--warm);font-weight:600;text-decoration:none">Try it live ↓</a></div></div>
+    <div class="feat-card reveal reveal-d1"><div class="feat-icon">📊</div><div class="feat-title">Smart Data Import</div><div class="feat-desc">Upload from Excel, CSV, Google Sheets, or paste directly. GradFare auto-detects 40+ column name variations — however your registrar formats the data, it just works.</div></div>
+    <div class="feat-card reveal reveal-d2"><div class="feat-icon">🎫</div><div class="feat-title">Ticket Allowance System</div><div class="feat-desc">Set a default per event, override per student. Each graduate manages their own guest list through a personal portal — no staff bottleneck.</div></div>
+    <div class="feat-card reveal reveal-d3"><div class="feat-icon">📱</div><div class="feat-title">Student Self-Service Portal</div><div class="feat-desc">Every student gets a unique link — no app, no account. They add guests, get instant QR tickets, and manage invitations anytime from any device.</div></div>
+    <div class="feat-card reveal reveal-d1"><div class="feat-icon">📷</div><div class="feat-title">QR Camera Check-in</div><div class="feat-desc">Staff point their phone camera at guest QR codes. Instant confirmation with guest name, student, and event. Multiple staff scan simultaneously.</div></div>
+    <div class="feat-card reveal reveal-d2"><div class="feat-icon">🪑</div><div class="feat-title">Seating Arrangements</div><div class="feat-desc">Create venue sections with capacity limits. Assign students with real-time fill tracking. No more over-booked sections or confused guests.</div></div>
+    <div class="feat-card reveal reveal-d3"><div class="feat-icon">📋</div><div class="feat-title">Ceremony Program Builder</div><div class="feat-desc">Build your full agenda with speakers, music, awards, and timing. Reorder with one click. Total duration calculated automatically.</div></div>
+    <div class="feat-card reveal reveal-d1"><div class="feat-icon">🖨️</div><div class="feat-title">Print-Ready PDF Tickets</div><div class="feat-desc">Beautiful A6 tickets with QR codes, guest names, and seat assignments. Print one ticket or batch-print thousands in a single click.</div></div>
+    <div class="feat-card reveal reveal-d3"><div class="feat-icon">🎨</div><div class="feat-title">Custom School Branding</div><div class="feat-desc">4 built-in themes plus custom school colors. Add your logo, name, and banner image. Students see YOUR brand, not a generic tool.</div></div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how" id="how">
+  <div class="sec-label reveal">How It Works</div>
+  <h2 class="sec-title reveal">From roster to recessional<br/>in four steps</h2>
+  <p class="sec-sub reveal">Set up in a day. Run smoothly for years.</p>
+  <div class="steps">
+    <div class="step reveal reveal-d1"><div class="step-num">1</div><div class="step-title">Upload Your Students</div><div class="step-desc">Import from Excel, Google Sheets, or paste from anywhere. GradFare handles the rest.</div></div>
+    <div class="step reveal reveal-d2"><div class="step-num">2</div><div class="step-title">Students Invite Guests</div><div class="step-desc">Each graduate gets a unique portal link. They manage their own guest list — zero staff effort.</div></div>
+    <div class="step reveal reveal-d3"><div class="step-num">3</div><div class="step-title">Build Your Ceremony</div><div class="step-desc">Set up seating, build the program, configure branding. Everything in one beautiful dashboard.</div></div>
+    <div class="step reveal reveal-d4"><div class="step-num">4</div><div class="step-title">Scan & Celebrate</div><div class="step-desc">Staff scan QR codes with their phones. Guests check in instantly. You enjoy the ceremony.</div></div>
+  </div>
+</section>
+
+<!-- STUDENT PORTAL PREVIEW -->
+<section class="portal-sec" id="portal">
+  <div class="sec-label reveal">Student Experience</div>
+  <h2 class="sec-title reveal">Your students will love it</h2>
+  <p class="sec-sub reveal">No app to download. No account to create. Just a beautiful link that works instantly on any device.</p>
+  <div class="portal-preview reveal" style="transition-delay:.2s">
+    <div class="pp-hero">
+      <div class="pp-logo"><svg width="20" height="14" viewBox="0 0 30 20" fill="none"><polygon points="15,0 30,8 15,16 0,8" fill="white" opacity=".95"/><polygon points="15,16 30,8 30,10 15,18 0,10 0,8" fill="white" opacity=".7"/></svg>GF</div>
+      <div class="pp-school">Charlotte University</div>
+      <div class="pp-event">Class of 2026 Spring Commencement</div>
+      <div class="pp-date">📍 Memorial Stadium · 📅 May 15, 2026</div>
+      <div class="pp-countdown">
+        <div class="pp-cd-unit"><div class="pp-cd-num">84</div><div class="pp-cd-label">Days</div></div>
+        <div class="pp-cd-sep">:</div>
+        <div class="pp-cd-unit"><div class="pp-cd-num">06</div><div class="pp-cd-label">Hours</div></div>
+        <div class="pp-cd-sep">:</div>
+        <div class="pp-cd-unit"><div class="pp-cd-num">42</div><div class="pp-cd-label">Min</div></div>
+        <div class="pp-cd-sep">:</div>
+        <div class="pp-cd-unit"><div class="pp-cd-num">18</div><div class="pp-cd-label">Sec</div></div>
+      </div>
+    </div>
+    <div class="pp-body">
+      <div class="pp-welcome">
+        <div style="font-size:11px;color:#b89a80">Welcome,</div>
+        <div class="pp-name">Amara Johnson</div>
+        <div class="pp-id">STU-2026-003</div>
+        <div style="font-size:12px;color:#7a5a45;margin-top:8px">Guest Tickets: <strong>3</strong> of <strong>5</strong> used</div>
+        <div class="pp-dots"><div class="pp-dot pp-dot-used"></div><div class="pp-dot pp-dot-used"></div><div class="pp-dot pp-dot-used"></div><div class="pp-dot pp-dot-avail"></div><div class="pp-dot pp-dot-avail"></div></div>
+      </div>
+      <div style="font-size:15px;font-weight:650;margin-bottom:12px">🎫 Your Guests</div>
+      <div class="pp-guest"><div class="pp-guest-av">S</div><div class="pp-guest-name">Sarah Johnson</div><div class="pp-guest-badge" style="background:#f0faf3;color:#1a7a34">valid</div></div>
+      <div class="pp-guest"><div class="pp-guest-av">J</div><div class="pp-guest-name">James Johnson</div><div class="pp-guest-badge" style="background:#f0faf3;color:#1a7a34">valid</div></div>
+      <div class="pp-guest"><div class="pp-guest-av">R</div><div class="pp-guest-name">Grandma Rose</div><div class="pp-guest-badge" style="background:#f0f6ff;color:#0066cc">checked in</div></div>
+      <div class="pp-footer">Powered by <strong>SENTRi</strong> 🎓 <strong>GradFare</strong></div>
+    </div>
+  </div>
+</section>
+
+<!-- LIVE COUNTDOWN DEMO -->
+<section class="cd-demo" id="countdown-demo">
+  <div class="sec-label reveal">Try It Now</div>
+  <h2 class="sec-title reveal">Live Countdown Timer</h2>
+  <p class="sec-sub reveal">This is what your students and staff will see. Set a time and watch the magic.</p>
+  <div class="cd-box reveal" style="transition-delay:.2s">
+    <div class="cd-display">
+      <div class="cd-unit"><div class="cd-num" id="cd-h">00</div><div class="cd-lbl">Hours</div></div>
+      <div class="cd-sep">:</div>
+      <div class="cd-unit"><div class="cd-num" id="cd-m">05</div><div class="cd-lbl">Minutes</div></div>
+      <div class="cd-sep">:</div>
+      <div class="cd-unit"><div class="cd-num" id="cd-s">00</div><div class="cd-lbl">Seconds</div></div>
+    </div>
+    <div class="cd-status" id="cd-status"></div>
+    <div class="cd-inputs" id="cd-inputs">
+      <div class="cd-input-group"><label>Hours</label><input type="number" id="in-h" value="0" min="0" max="99"/></div>
+      <div class="cd-input-group"><label>Minutes</label><input type="number" id="in-m" value="5" min="0" max="59"/></div>
+      <div class="cd-input-group"><label>Seconds</label><input type="number" id="in-s" value="0" min="0" max="59"/></div>
+    </div>
+    <div class="cd-controls">
+      <button class="cd-btn cd-btn-start" id="cd-start" onclick="cdStart()">▶ Start</button>
+      <button class="cd-btn cd-btn-pause" id="cd-pause" onclick="cdPause()" style="display:none">⏸ Pause</button>
+      <button class="cd-btn cd-btn-stop" id="cd-stop" onclick="cdStop()" style="display:none">⏹ Reset</button>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing" id="pricing">
+  <div class="sec-label reveal">Pricing</div>
+  <h2 class="sec-title reveal">Simple, transparent pricing</h2>
+  <p class="sec-sub reveal">No hidden fees. No per-ticket charges. Just one price for everything.</p>
+  <div class="price-grid">
+    <div class="price-card reveal reveal-d1">
+      <div class="price-name">Starter</div>
+      <div class="price-desc">For small colleges</div>
+      <div class="price-amt">$499</div>
+      <div class="price-per">per event</div>
+      <ul class="price-list"><li>Up to 500 students</li><li>All core features</li><li>Email support</li><li>1 admin account</li></ul>
+      <button class="price-btn price-btn-s" onclick="location.href='https://app.gradfare.com'">Get Started</button>
+    </div>
+    <div class="price-card pop reveal reveal-d2">
+      <div class="price-name">University</div>
+      <div class="price-desc">For large institutions</div>
+      <div class="price-amt">$2,499</div>
+      <div class="price-per">per year · unlimited events</div>
+      <ul class="price-list"><li>Unlimited students</li><li>All features + branding</li><li>Priority support</li><li>10 staff accounts</li><li>Custom school themes</li></ul>
+      <button class="price-btn price-btn-p" onclick="location.href='https://app.gradfare.com'">Start Free Trial</button>
+    </div>
+    <div class="price-card reveal reveal-d3">
+      <div class="price-name">Enterprise</div>
+      <div class="price-desc">Multi-campus systems</div>
+      <div class="price-amt">Custom</div>
+      <div class="price-per">tailored to your needs</div>
+      <ul class="price-list"><li>Multi-campus support</li><li>SIS API integration</li><li>Dedicated account manager</li><li>On-premise deployment</li><li>SLA guarantee</li></ul>
+      <button class="price-btn price-btn-s" onclick="location.href='#cta'">Contact Sales</button>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT / GET STARTED -->
+<section class="contact" id="cta">
+  <div class="sec-label reveal">Get Started</div>
+  <h2 class="sec-title reveal">Let's make your ceremony<br/><em>unforgettable</em></h2>
+  <p class="sec-sub reveal">Book a demo, send us a message, or reach out directly. We'd love to hear about your event.</p>
+  <div class="contact-grid">
+    <!-- LEFT: Contact info + booking -->
+    <div class="contact-left reveal">
+      <div class="contact-card">
+        <div class="contact-card-icon">📧</div>
+        <div class="contact-card-label">Email Us</div>
+        <div class="contact-card-value"><a href="/cdn-cgi/l/email-protection#bfd6d1d9d0ffd8cddedbd9decdda91dcd0d2"><span class="__cf_email__" data-cfemail="98f1f6fef7d8ffeaf9fcfef9eafdb6fbf7f5">[email&#160;protected]</span></a></div>
+      </div>
+      <div class="contact-card">
+        <div class="contact-card-icon">📞</div>
+        <div class="contact-card-label">Call or Text</div>
+        <div class="contact-card-value"><a href="tel:+12407080015">(240) 708-0015</a></div>
+      </div>
+      <a href="https://calendar.app.google/pkEsi5GKi2sQcWWa9" target="_blank" class="contact-book">
+        <div class="contact-book-icon">📅</div>
+        <div class="contact-book-title">Book a Free Demo</div>
+        <div class="contact-book-sub">Pick a time on our calendar — 30 min, no commitment</div>
+      </a>
+    </div>
+    <!-- RIGHT: Contact form -->
+    <div class="contact-form reveal" style="transition-delay:.15s">
+      <h3>Send us a message</h3>
+      <form id="contactForm" onsubmit="return handleSubmit(event)">
+        <div class="cf-row">
+          <div class="cf-group"><label>First Name</label><input type="text" id="cf-fname" required placeholder="John"/></div>
+          <div class="cf-group"><label>Last Name</label><input type="text" id="cf-lname" required placeholder="Smith"/></div>
+        </div>
+        <div class="cf-group"><label>Email</label><input type="email" id="cf-email" required placeholder="john@university.edu"/></div>
+        <div class="cf-group"><label>Organization</label><input type="text" id="cf-org" placeholder="University of Maryland"/></div>
+        <div class="cf-group">
+          <label>I'm interested in</label>
+          <select id="cf-interest">
+            <option value="demo">Scheduling a demo</option>
+            <option value="pricing">Pricing information</option>
+            <option value="starter">Starter plan (single event)</option>
+            <option value="university">University plan (unlimited)</option>
+            <option value="enterprise">Enterprise / multi-campus</option>
+            <option value="other">Something else</option>
+          </select>
+        </div>
+        <div class="cf-group"><label>Message</label><textarea id="cf-msg" placeholder="Tell us about your upcoming ceremony — how many graduates, venue, date, etc."></textarea></div>
+        <button type="submit" class="cf-submit">Send Message</button>
+      </form>
+      <div class="cf-success" id="cfSuccess">
+        <div class="cf-success-icon">🎓</div>
+        <div class="cf-success-title">Message sent!</div>
+        <div class="cf-success-sub">We'll get back to you within 24 hours.<br/>Or <a href="https://calendar.app.google/pkEsi5GKi2sQcWWa9" target="_blank" style="color:var(--warm);font-weight:600">book a call now</a> to skip the wait.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA BANNER -->
+<section class="cta-final">
+  <h2 class="reveal">Ready to get started?</h2>
+  <p class="reveal" style="transition-delay:.1s">Join institutions that chose to celebrate smarter.</p>
+  <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;position:relative;z-index:1">
+    <a href="#cta" class="btn-hero btn-hero-primary reveal" style="transition-delay:.2s">Send a Message</a>
+    <a href="https://calendar.app.google/pkEsi5GKi2sQcWWa9" target="_blank" class="btn-hero btn-hero-secondary reveal" style="transition-delay:.3s;border-color:rgba(255,255,255,.2);color:#fff">📅 Book a Demo</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">
+    <div style="width:24px;height:24px;background:linear-gradient(135deg,#e8622c,#f5a623);border-radius:6px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:10px;letter-spacing:-0.5px">GF</div>
+    GradFare
+  </div>
+  <div>© 2026 SENTRi. GradFare™ All rights reserved.</div>
+  <div class="footer-links"><a href="#">Privacy</a><a href="#">Terms</a><a href="#cta">Contact</a></div>
+</footer>
+
+<!-- SCRIPTS -->
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+// Confetti
+const cb=document.getElementById('confetti');
+const colors=['#e8622c','#f5a623','#30d158','#0a84ff','#af52de'];
+for(let i=0;i<25;i++){const d=document.createElement('div');d.className='p';const s=4+Math.random()*6;d.style.cssText=`left:${Math.random()*100}%;width:${s}px;height:${s}px;background:${colors[Math.floor(Math.random()*5)]};border-radius:${Math.random()>.5?'50%':'2px'};animation-delay:${Math.random()*8}s;animation-duration:${6+Math.random()*6}s`;cb.appendChild(d)}
+
+// Scroll nav
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>{nav.classList.toggle('scrolled',window.scrollY>50)});
+
+// Scroll reveal
+const obs=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}})},{threshold:.1,rootMargin:'0px 0px -50px 0px'});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+// ═══ COUNTDOWN TIMER ═══
+let cdInterval=null;
+let cdRemaining=300; // 5 min default
+let cdRunning=false;
+let cdPaused=false;
+
+function cdRender(){
+  const h=Math.floor(cdRemaining/3600);
+  const m=Math.floor((cdRemaining%3600)/60);
+  const s=cdRemaining%60;
+  document.getElementById('cd-h').textContent=String(h).padStart(2,'0');
+  document.getElementById('cd-m').textContent=String(m).padStart(2,'0');
+  document.getElementById('cd-s').textContent=String(s).padStart(2,'0');
+}
+
+function cdStart(){
+  if(!cdRunning){
+    const h=parseInt(document.getElementById('in-h').value)||0;
+    const m=parseInt(document.getElementById('in-m').value)||0;
+    const s=parseInt(document.getElementById('in-s').value)||0;
+    cdRemaining=h*3600+m*60+s;
+    if(cdRemaining<=0)return;
+  }
+  cdRunning=true;cdPaused=false;
+  document.getElementById('cd-inputs').style.display='none';
+  document.getElementById('cd-start').style.display='none';
+  document.getElementById('cd-pause').style.display='inline-block';
+  document.getElementById('cd-stop').style.display='inline-block';
+  document.getElementById('cd-status').className='cd-status cd-status-running';
+  document.getElementById('cd-status').textContent='⏱ Running...';
+  cdRender();
+  if(cdInterval)clearInterval(cdInterval);
+  cdInterval=setInterval(()=>{
+    if(cdRemaining<=0){
+      clearInterval(cdInterval);cdInterval=null;cdRunning=false;
+      document.getElementById('cd-status').className='cd-status cd-status-done';
+      document.getElementById('cd-status').innerHTML='🎓 Time\'s up! Let\'s celebrate!';
+      document.getElementById('cd-pause').style.display='none';
+      document.getElementById('cd-stop').textContent='↺ Reset';
+      // Burst confetti
+      const c=document.getElementById('confetti');
+      for(let i=0;i<40;i++){const d=document.createElement('div');d.className='p';const sz=6+Math.random()*8;const colors=['#e8622c','#f5a623','#30d158','#0a84ff','#af52de'];d.style.cssText='left:'+Math.random()*100+'%;width:'+sz+'px;height:'+sz+'px;background:'+colors[Math.floor(Math.random()*5)]+';border-radius:'+(Math.random()>.5?'50%':'2px')+';animation-delay:0s;animation-duration:'+(2+Math.random()*3)+'s;opacity:.8';c.appendChild(d);setTimeout(()=>d.remove(),5000)}
+      return;
+    }
+    cdRemaining--;cdRender();
+  },1000);
+}
+
+function cdPause(){
+  if(cdPaused){cdStart();return}
+  cdPaused=true;
+  clearInterval(cdInterval);cdInterval=null;
+  document.getElementById('cd-pause').innerHTML='▶ Resume';
+  document.getElementById('cd-status').className='cd-status cd-status-paused';
+  document.getElementById('cd-status').textContent='⏸ Paused';
+}
+
+function cdStop(){
+  clearInterval(cdInterval);cdInterval=null;
+  cdRunning=false;cdPaused=false;
+  cdRemaining=0;
+  document.getElementById('cd-h').textContent='00';
+  document.getElementById('cd-m').textContent='00';
+  document.getElementById('cd-s').textContent='00';
+  document.getElementById('cd-inputs').style.display='flex';
+  document.getElementById('cd-start').style.display='inline-block';
+  document.getElementById('cd-pause').style.display='none';
+  document.getElementById('cd-pause').innerHTML='⏸ Pause';
+  document.getElementById('cd-stop').style.display='none';
+  document.getElementById('cd-stop').textContent='⏹ Reset';
+  document.getElementById('cd-status').className='cd-status';
+  document.getElementById('cd-status').textContent='';
+}
+
+// Init display
+cdRender();
+
+// ═══ CONTACT FORM ═══
+function handleSubmit(e){
+  e.preventDefault();
+  const fname=document.getElementById('cf-fname').value;
+  const lname=document.getElementById('cf-lname').value;
+  const email=document.getElementById('cf-email').value;
+  const org=document.getElementById('cf-org').value;
+  const interest=document.getElementById('cf-interest').value;
+  const msg=document.getElementById('cf-msg').value;
+  
+  const subject=encodeURIComponent('GradFare Inquiry from '+fname+' '+lname+' — '+interest);
+  const body=encodeURIComponent(
+    'Name: '+fname+' '+lname+'\n'+
+    'Email: '+email+'\n'+
+    'Organization: '+org+'\n'+
+    'Interest: '+interest+'\n'+
+    '---\n'+
+    msg+'\n\n'+
+    '— Sent from GradFare Landing Page'
+  );
+  
+  // Open mailto
+  window.location.href='mailto:info@
