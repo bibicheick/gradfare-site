@@ -165,36 +165,6 @@ html{scroll-behavior:smooth}body{font-family:var(--font);color:var(--text);backg
 .price-btn-p{background:var(--warm);color:#fff}.price-btn-p:hover{background:#d4551f}
 .price-btn-s{background:#fff;color:var(--dark);border:1.5px solid rgba(0,0,0,.1)}.price-btn-s:hover{border-color:var(--warm);color:var(--warm)}
 
-/* CONTACT SECTION */
-.contact{padding:100px 40px;background:#fff}
-.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;max-width:1000px;margin:0 auto}
-.contact-left{display:flex;flex-direction:column;gap:24px}
-.contact-card{background:var(--cream);border:1px solid rgba(232,98,44,.08);border-radius:16px;padding:28px;transition:all .3s}
-.contact-card:hover{box-shadow:0 8px 32px rgba(232,98,44,.08)}
-.contact-card-icon{font-size:24px;margin-bottom:12px}
-.contact-card-label{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--muted);margin-bottom:4px}
-.contact-card-value{font-size:17px;font-weight:600;color:var(--dark)}
-.contact-card-value a{color:var(--dark);text-decoration:none;transition:color .2s}.contact-card-value a:hover{color:var(--warm)}
-.contact-book{background:linear-gradient(135deg,var(--warm),var(--gold));border-radius:16px;padding:28px;color:#fff;text-align:center;transition:all .3s;cursor:pointer;text-decoration:none;display:block}
-.contact-book:hover{transform:translateY(-3px);box-shadow:0 12px 40px rgba(232,98,44,.3)}
-.contact-book-icon{font-size:32px;margin-bottom:8px}
-.contact-book-title{font-size:18px;font-weight:700;margin-bottom:4px}
-.contact-book-sub{font-size:13px;opacity:.85}
-.contact-form{background:var(--cream);border:1px solid rgba(232,98,44,.08);border-radius:16px;padding:32px}
-.contact-form h3{font-size:20px;font-weight:700;margin-bottom:20px;color:var(--dark)}
-.cf-group{margin-bottom:16px}
-.cf-group label{display:block;font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.8px;color:var(--muted);margin-bottom:6px}
-.cf-group input,.cf-group textarea,.cf-group select{width:100%;padding:12px 16px;border:1.5px solid rgba(0,0,0,.08);border-radius:12px;font-size:15px;font-family:var(--font);color:var(--text);outline:none;transition:all .2s;background:#fff;resize:vertical}
-.cf-group input:focus,.cf-group textarea:focus,.cf-group select:focus{border-color:var(--warm);box-shadow:0 0 0 3px rgba(232,98,44,.1)}
-.cf-group textarea{min-height:100px}
-.cf-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.cf-submit{width:100%;padding:14px;border-radius:980px;font-size:15px;font-weight:600;cursor:pointer;transition:all .2s;border:none;font-family:var(--font);background:var(--warm);color:#fff;margin-top:8px}.cf-submit:hover{background:#d4551f;box-shadow:0 4px 16px rgba(232,98,44,.3)}
-.cf-success{display:none;text-align:center;padding:32px;color:var(--warm)}
-.cf-success-icon{font-size:48px;margin-bottom:12px}
-.cf-success-title{font-size:20px;font-weight:700;color:var(--dark);margin-bottom:4px}
-.cf-success-sub{font-size:14px;color:var(--sub)}
-@media(max-width:768px){.contact-grid{grid-template-columns:1fr}.cf-row{grid-template-columns:1fr}}
-
 /* FINAL CTA */
 .cta-final{padding:100px 40px;background:var(--dark);text-align:center;position:relative;overflow:hidden}
 .cta-final::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(232,98,44,.1),transparent 70%)}
@@ -238,7 +208,7 @@ footer{padding:48px 40px;background:var(--navy);color:rgba(255,255,255,.4);displ
     <a href="#portal">Student Portal</a>
     <a href="#pricing">Pricing</a>
     <a href="#countdown-demo" class="nav-countdown">⏱ Live Countdown</a>
-    <a href="#cta" class="nav-cta">Get Started</a>
+    <a href="https://app.gradfare.com" class="nav-cta">Get Started</a>
   </div>
 </nav>
 
@@ -248,7 +218,7 @@ footer{padding:48px 40px;background:var(--navy);color:rgba(255,255,255,.4);displ
   <h1>Graduation should be a <em>celebration</em>, not a logistical nightmare</h1>
   <p class="hero-sub">The all-in-one platform that transforms graduation chaos into a seamless, joyful experience — from student registration to the final cap toss. For universities, colleges, academies, and any institution that celebrates achievement.</p>
   <div class="hero-ctas">
-    <a href="#cta" class="btn-hero btn-hero-primary">Start Free Trial</a>
+    <a href="https://app.gradfare.com" class="btn-hero btn-hero-primary">Start Free Trial</a>
     <a href="#portal" class="btn-hero btn-hero-secondary">See Student Portal</a>
   </div>
   <div class="hero-scroll">Scroll to explore<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6,9 12,15 18,9"/></svg></div>
@@ -458,7 +428,7 @@ footer{padding:48px 40px;background:var(--navy);color:rgba(255,255,255,.4);displ
       <div class="price-amt">$499</div>
       <div class="price-per">per event</div>
       <ul class="price-list"><li>Up to 500 students</li><li>All core features</li><li>Email support</li><li>1 admin account</li></ul>
-      <button class="price-btn price-btn-s" onclick="location.href='#cta'">Get Started</button>
+      <button class="price-btn price-btn-s" onclick="location.href='https://app.gradfare.com'">Get Started</button>
     </div>
     <div class="price-card pop reveal reveal-d2">
       <div class="price-name">University</div>
@@ -466,7 +436,7 @@ footer{padding:48px 40px;background:var(--navy);color:rgba(255,255,255,.4);displ
       <div class="price-amt">$2,499</div>
       <div class="price-per">per year · unlimited events</div>
       <ul class="price-list"><li>Unlimited students</li><li>All features + branding</li><li>Priority support</li><li>10 staff accounts</li><li>Custom school themes</li></ul>
-      <button class="price-btn price-btn-p" onclick="location.href='#cta'">Start Free Trial</button>
+      <button class="price-btn price-btn-p" onclick="location.href='https://app.gradfare.com'">Start Free Trial</button>
     </div>
     <div class="price-card reveal reveal-d3">
       <div class="price-name">Enterprise</div>
@@ -479,70 +449,100 @@ footer{padding:48px 40px;background:var(--navy);color:rgba(255,255,255,.4);displ
   </div>
 </section>
 
-<!-- CONTACT / GET STARTED -->
-<section class="contact" id="cta">
+<!-- CONTACT & CTA -->
+<style>
+.cta-contact{padding:80px 40px;max-width:1100px;margin:0 auto}
+.cta-contact .sec-label,.cta-contact .sec-title,.cta-contact .sec-sub{text-align:center}
+.cta-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-top:48px}
+.contact-cards{display:flex;flex-direction:column;gap:16px}
+.contact-card{background:var(--surface,#fff);border:1px solid #e5e5e7;border-radius:14px;padding:20px 24px;display:flex;align-items:center;gap:16px;transition:all .25s}
+.contact-card:hover{border-color:#e8622c;box-shadow:0 4px 20px rgba(232,98,42,.08)}
+.contact-card-icon{font-size:24px;width:48px;height:48px;background:#fef0e6;border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.contact-card-label{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.8px;color:#aeaeb2}
+.contact-card-value{font-size:15px;font-weight:600;margin-top:2px}
+.contact-card-value a{color:#1d1d1f;text-decoration:none}
+.contact-card-value a:hover{color:#e8622c}
+.btn-demo{display:inline-flex;align-items:center;gap:10px;padding:16px 32px;background:linear-gradient(135deg,#e8622c,#f5a623);color:#fff;text-decoration:none;border-radius:980px;font-weight:600;font-size:15px;transition:all .25s;margin-top:8px;border:none;cursor:pointer;width:100%;justify-content:center}
+.btn-demo:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(232,98,42,.3)}
+.contact-form{background:var(--surface,#fff);border:1px solid #e5e5e7;border-radius:14px;padding:32px}
+.contact-form h3{font-size:18px;font-weight:650;margin-bottom:20px}
+.cf-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
+.cf-field{display:flex;flex-direction:column;margin-bottom:12px}
+.cf-field label{font-size:12px;font-weight:600;color:#6e6e73;margin-bottom:4px}
+.cf-field input,.cf-field select,.cf-field textarea{padding:10px 14px;border:1px solid #e5e5e7;border-radius:10px;font-size:14px;font-family:inherit;outline:none;transition:border .2s}
+.cf-field input:focus,.cf-field select:focus,.cf-field textarea:focus{border-color:#e8622c}
+.cf-submit{padding:14px 28px;background:#1d1d1f;color:#fff;border:none;border-radius:980px;font-size:14px;font-weight:600;cursor:pointer;font-family:inherit;width:100%;transition:all .25s}
+.cf-submit:hover{background:#424245}
+.cf-success{text-align:center;padding:40px 20px;display:none}
+.cf-success.show{display:block}
+.cf-success .check{font-size:48px;margin-bottom:12px}
+.cf-success h3{font-size:20px;font-weight:650;margin-bottom:8px}
+.cf-success p{color:#6e6e73;font-size:14px;line-height:1.6}
+.cf-success a{color:#e8622c;font-weight:600;text-decoration:none}
+@media(max-width:768px){.cta-grid{grid-template-columns:1fr}.cf-row{grid-template-columns:1fr}}
+</style>
+
+<section class="cta-contact" id="cta">
   <div class="sec-label reveal">Get Started</div>
-  <h2 class="sec-title reveal">Let's make your ceremony<br/><em>unforgettable</em></h2>
+  <h2 class="sec-title reveal">Let's make your ceremony <em>unforgettable</em></h2>
   <p class="sec-sub reveal">Book a demo, send us a message, or reach out directly. We'd love to hear about your event.</p>
-  <div class="contact-grid">
-    <!-- LEFT: Contact info + booking -->
-    <div class="contact-left reveal">
+
+  <div class="cta-grid">
+    <div class="contact-cards reveal">
       <div class="contact-card">
         <div class="contact-card-icon">📧</div>
-        <div class="contact-card-label">Email Us</div>
-        <div class="contact-card-value"><a href="mailto:info@gradfare.com">info@gradfare.com</a></div>
+        <div>
+          <div class="contact-card-label">Email Us</div>
+          <div class="contact-card-value"><a href="mailto:info@gradfare.com">info@gradfare.com</a></div>
+        </div>
       </div>
       <div class="contact-card">
         <div class="contact-card-icon">📞</div>
-        <div class="contact-card-label">Call or Text</div>
-        <div class="contact-card-value"><a href="tel:+12407080015">(240) 708-0015</a></div>
+        <div>
+          <div class="contact-card-label">Call or Text</div>
+          <div class="contact-card-value"><a href="tel:+12407080015">(240) 708-0015</a></div>
+        </div>
       </div>
-      <a href="https://calendar.app.google/pkEsi5GKi2sQcWWa9" target="_blank" class="contact-book">
-        <div class="contact-book-icon">📅</div>
-        <div class="contact-book-title">Book a Free Demo</div>
-        <div class="contact-book-sub">Pick a time on our calendar — 30 min, no commitment</div>
-      </a>
+      <a href="https://calendar.app.google/pkEsi5GKi2sQcWWa9" target="_blank" class="btn-demo">📅 Book a Free Demo</a>
     </div>
-    <!-- RIGHT: Contact form -->
-    <div class="contact-form reveal" style="transition-delay:.15s">
+
+    <div class="contact-form reveal" id="contactForm">
       <h3>Send us a message</h3>
-      <form id="contactForm" onsubmit="return handleSubmit(event)">
-        <div class="cf-row">
-          <div class="cf-group"><label>First Name</label><input type="text" id="cf-fname" required placeholder="John"/></div>
-          <div class="cf-group"><label>Last Name</label><input type="text" id="cf-lname" required placeholder="Smith"/></div>
-        </div>
-        <div class="cf-group"><label>Email</label><input type="email" id="cf-email" required placeholder="john@university.edu"/></div>
-        <div class="cf-group"><label>Organization</label><input type="text" id="cf-org" placeholder="University of Maryland"/></div>
-        <div class="cf-group">
-          <label>I'm interested in</label>
-          <select id="cf-interest">
-            <option value="demo">Scheduling a demo</option>
-            <option value="pricing">Pricing information</option>
-            <option value="starter">Starter plan (single event)</option>
-            <option value="university">University plan (unlimited)</option>
-            <option value="enterprise">Enterprise / multi-campus</option>
-            <option value="other">Something else</option>
-          </select>
-        </div>
-        <div class="cf-group"><label>Message</label><textarea id="cf-msg" placeholder="Tell us about your upcoming ceremony — how many graduates, venue, date, etc."></textarea></div>
-        <button type="submit" class="cf-submit">Send Message</button>
-      </form>
-      <div class="cf-success" id="cfSuccess">
-        <div class="cf-success-icon">🎓</div>
-        <div class="cf-success-title">Message sent!</div>
-        <div class="cf-success-sub">We'll get back to you within 24 hours.<br/>Or <a href="https://calendar.app.google/pkEsi5GKi2sQcWWa9" target="_blank" style="color:var(--warm);font-weight:600">book a call now</a> to skip the wait.</div>
+      <div class="cf-row">
+        <div class="cf-field"><label>First Name</label><input type="text" id="cf-fn" placeholder="First Name"/></div>
+        <div class="cf-field"><label>Last Name</label><input type="text" id="cf-ln" placeholder="Last Name"/></div>
       </div>
+      <div class="cf-field"><label>Email</label><input type="email" id="cf-email" placeholder="you@institution.edu"/></div>
+      <div class="cf-field"><label>Organization</label><input type="text" id="cf-org" placeholder="Your university or institution"/></div>
+      <div class="cf-field"><label>I'm interested in</label>
+        <select id="cf-interest">
+          <option value="">Select...</option>
+          <option>Scheduling a demo</option>
+          <option>Pricing information</option>
+          <option>Starter plan (single event)</option>
+          <option>University plan (unlimited)</option>
+          <option>Enterprise / multi-campus</option>
+          <option>Something else</option>
+        </select>
+      </div>
+      <div class="cf-field"><label>Message</label><textarea id="cf-msg" rows="3" placeholder="Tell us about your event..."></textarea></div>
+      <button class="cf-submit" onclick="submitContact()">Send Message</button>
+    </div>
+    <div class="cf-success" id="contactSuccess">
+      <div class="check">🎓</div>
+      <h3>Message sent!</h3>
+      <p>We'll get back to you within 24 hours.<br/>Or <a href="https://calendar.app.google/pkEsi5GKi2sQcWWa9" target="_blank">book a call now</a> to skip the wait.</p>
     </div>
   </div>
 </section>
 
-<!-- FINAL CTA BANNER -->
+<!-- FINAL BANNER -->
 <section class="cta-final">
   <h2 class="reveal">Ready to get started?</h2>
   <p class="reveal" style="transition-delay:.1s">Join institutions that chose to celebrate smarter.</p>
-  <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;position:relative;z-index:1">
+  <div style="display:flex;gap:16px;flex-wrap:wrap;justify-content:center;position:relative;z-index:1">
     <a href="#cta" class="btn-hero btn-hero-primary reveal" style="transition-delay:.2s">Send a Message</a>
-    <a href="https://calendar.app.google/pkEsi5GKi2sQcWWa9" target="_blank" class="btn-hero btn-hero-secondary reveal" style="transition-delay:.3s;border-color:rgba(255,255,255,.2);color:#fff">📅 Book a Demo</a>
+    <a href="https://calendar.app.google/pkEsi5GKi2sQcWWa9" target="_blank" class="btn-hero reveal" style="transition-delay:.3s;background:rgba(255,255,255,.15);color:#fff;border:1px solid rgba(255,255,255,.3)">📅 Book a Demo</a>
   </div>
 </section>
 
@@ -568,7 +568,7 @@ const nav=document.getElementById('nav');
 window.addEventListener('scroll',()=>{nav.classList.toggle('scrolled',window.scrollY>50)});
 
 // Scroll reveal
-const obs=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}})},{threshold:.1,rootMargin:'0px 0px -50px 0px'});
+const obs=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}})},{threshold:0.02,rootMargin:'0px 0px 0px 0px'});
 document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
 
 // ═══ COUNTDOWN TIMER ═══
@@ -649,35 +649,23 @@ function cdStop(){
 cdRender();
 
 // ═══ CONTACT FORM ═══
-function handleSubmit(e){
-  e.preventDefault();
-  const fname=document.getElementById('cf-fname').value;
-  const lname=document.getElementById('cf-lname').value;
+function submitContact(){
+  const fn=document.getElementById('cf-fn').value;
+  const ln=document.getElementById('cf-ln').value;
   const email=document.getElementById('cf-email').value;
   const org=document.getElementById('cf-org').value;
   const interest=document.getElementById('cf-interest').value;
   const msg=document.getElementById('cf-msg').value;
-  
-  const subject=encodeURIComponent('GradFare Inquiry from '+fname+' '+lname+' — '+interest);
-  const body=encodeURIComponent(
-    'Name: '+fname+' '+lname+'\n'+
-    'Email: '+email+'\n'+
-    'Organization: '+org+'\n'+
-    'Interest: '+interest+'\n'+
-    '---\n'+
-    msg+'\n\n'+
-    '— Sent from GradFare Landing Page'
-  );
-  
-  // Open mailto
-  window.location.href='mailto:info@gradfare.com?subject='+subject+'&body='+body;
-  
-  // Show success
+  const subject=encodeURIComponent('GradFare Inquiry from '+fn+' '+ln+' — '+org);
+  const body=encodeURIComponent('Name: '+fn+' '+ln+'\nEmail: '+email+'\nOrganization: '+org+'\nInterested in: '+interest+'\n\nMessage:\n'+msg);
+  window.open('mailto:info@gradfare.com?subject='+subject+'&body='+body);
   document.getElementById('contactForm').style.display='none';
-  document.getElementById('cfSuccess').style.display='block';
-  
-  return false;
+  document.getElementById('contactSuccess').classList.add('show');
 }
+
+// ═══ REVEAL FALLBACK ═══
+setTimeout(()=>{document.querySelectorAll('.reveal:not(.visible)').forEach(el=>el.classList.add('visible'))},2000);
+window.addEventListener('scroll',()=>{document.querySelectorAll('.reveal:not(.visible)').forEach(el=>{const r=el.getBoundingClientRect();if(r.top<window.innerHeight+100)el.classList.add('visible')})},{passive:true});
 </script>
 </body>
 </html>
