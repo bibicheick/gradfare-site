@@ -238,7 +238,7 @@ footer{padding:48px 40px;background:var(--navy);color:rgba(255,255,255,.4);displ
     <a href="#portal">Student Portal</a>
     <a href="#pricing">Pricing</a>
     <a href="#countdown-demo" class="nav-countdown">⏱ Live Countdown</a>
-    <a href="https://app.gradfare.com" class="nav-cta">Get Started</a>
+    <a href="#cta" class="nav-cta">Get Started</a>
   </div>
 </nav>
 
@@ -248,7 +248,7 @@ footer{padding:48px 40px;background:var(--navy);color:rgba(255,255,255,.4);displ
   <h1>Graduation should be a <em>celebration</em>, not a logistical nightmare</h1>
   <p class="hero-sub">The all-in-one platform that transforms graduation chaos into a seamless, joyful experience — from student registration to the final cap toss. For universities, colleges, academies, and any institution that celebrates achievement.</p>
   <div class="hero-ctas">
-    <a href="https://app.gradfare.com" class="btn-hero btn-hero-primary">Start Free Trial</a>
+    <a href="#cta" class="btn-hero btn-hero-primary">Start Free Trial</a>
     <a href="#portal" class="btn-hero btn-hero-secondary">See Student Portal</a>
   </div>
   <div class="hero-scroll">Scroll to explore<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6,9 12,15 18,9"/></svg></div>
@@ -458,7 +458,7 @@ footer{padding:48px 40px;background:var(--navy);color:rgba(255,255,255,.4);displ
       <div class="price-amt">$499</div>
       <div class="price-per">per event</div>
       <ul class="price-list"><li>Up to 500 students</li><li>All core features</li><li>Email support</li><li>1 admin account</li></ul>
-      <button class="price-btn price-btn-s" onclick="location.href='https://app.gradfare.com'">Get Started</button>
+      <button class="price-btn price-btn-s" onclick="location.href='#cta'">Get Started</button>
     </div>
     <div class="price-card pop reveal reveal-d2">
       <div class="price-name">University</div>
@@ -466,7 +466,7 @@ footer{padding:48px 40px;background:var(--navy);color:rgba(255,255,255,.4);displ
       <div class="price-amt">$2,499</div>
       <div class="price-per">per year · unlimited events</div>
       <ul class="price-list"><li>Unlimited students</li><li>All features + branding</li><li>Priority support</li><li>10 staff accounts</li><li>Custom school themes</li></ul>
-      <button class="price-btn price-btn-p" onclick="location.href='https://app.gradfare.com'">Start Free Trial</button>
+      <button class="price-btn price-btn-p" onclick="location.href='#cta'">Start Free Trial</button>
     </div>
     <div class="price-card reveal reveal-d3">
       <div class="price-name">Enterprise</div>
@@ -490,7 +490,7 @@ footer{padding:48px 40px;background:var(--navy);color:rgba(255,255,255,.4);displ
       <div class="contact-card">
         <div class="contact-card-icon">📧</div>
         <div class="contact-card-label">Email Us</div>
-        <div class="contact-card-value"><a href="mailto:info@gradfare.com" style="color:var(--warm);text-decoration:none;font-weight:600">info@gradfare.com</a></div>
+        <div class="contact-card-value"><a href="mailto:info@gradfare.com">info@gradfare.com</a></div>
       </div>
       <div class="contact-card">
         <div class="contact-card-icon">📞</div>
@@ -568,12 +568,8 @@ const nav=document.getElementById('nav');
 window.addEventListener('scroll',()=>{nav.classList.toggle('scrolled',window.scrollY>50)});
 
 // Scroll reveal
-const obs=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}})},{threshold:0.02,rootMargin:'0px 0px 0px 0px'});
+const obs=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}})},{threshold:.1,rootMargin:'0px 0px -50px 0px'});
 document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
-// Fallback: force reveal all elements after 2 seconds in case observer misses
-setTimeout(()=>{document.querySelectorAll('.reveal:not(.visible)').forEach(el=>el.classList.add('visible'))},2000);
-// Also trigger on any scroll
-window.addEventListener('scroll',()=>{document.querySelectorAll('.reveal:not(.visible)').forEach(el=>{const r=el.getBoundingClientRect();if(r.top<window.innerHeight+100)el.classList.add('visible')})},{passive:true});
 
 // ═══ COUNTDOWN TIMER ═══
 let cdInterval=null;
@@ -674,4 +670,14 @@ function handleSubmit(e){
   );
   
   // Open mailto
-  window.location.href='mailto:info@
+  window.location.href='mailto:info@gradfare.com?subject='+subject+'&body='+body;
+  
+  // Show success
+  document.getElementById('contactForm').style.display='none';
+  document.getElementById('cfSuccess').style.display='block';
+  
+  return false;
+}
+</script>
+</body>
+</html>
