@@ -3,21 +3,21 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>GradFare — Graduation & Ceremony Event Management | Powered by SENTRi</title>
+<title>GradFare — Graduation & Ceremony Event Management | Powered by The Royal Accent Creations</title>
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@400;700;900&display=swap" rel="stylesheet"/>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 :root{--warm:#e8622c;--gold:#f5a623;--cream:#fef7f0;--dark:#1a0e08;--navy:#0f172a;--surface:#fff;--text:#2d1810;--sub:#7a5a45;--muted:#b89a80;--r:16px;--font:'Outfit',sans-serif;--disp:'Playfair Display',serif}
 html{scroll-behavior:smooth}body{font-family:var(--font);color:var(--text);background:#fff;-webkit-font-smoothing:antialiased;overflow-x:hidden}
-@keyframes fadeUp{from{opacity:1;transform:translateY(0)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:translateY(0)}}
 @keyframes float{0%,100%{transform:translateY(0) rotate(0deg)}50%{transform:translateY(-12px) rotate(2deg)}}
 @keyframes floatSlow{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
 @keyframes confetti-fall{0%{transform:translateY(-10vh) rotate(0deg);opacity:.7}100%{transform:translateY(110vh) rotate(720deg);opacity:0}}
 @keyframes capToss{0%{transform:translateY(0) rotate(0deg)}30%{transform:translateY(-24px) rotate(-12deg)}60%{transform:translateY(-10px) rotate(6deg)}100%{transform:translateY(0) rotate(0deg)}}
 @keyframes pulse-glow{0%,100%{box-shadow:0 0 20px rgba(232,98,44,.15)}50%{box-shadow:0 0 40px rgba(232,98,44,.3)}}
 @keyframes scroll-hint{0%,100%{transform:translateY(0);opacity:1}50%{transform:translateY(8px);opacity:.5}}
-.reveal{opacity:1!important;transform:none!important;transition:none!important}.reveal.visible{opacity:1!important;transform:none!important}
-.reveal-d1{transition-delay:0s}.reveal-d2{transition-delay:0s}.reveal-d3{transition-delay:0s}.reveal-d4{transition-delay:0s}
+.reveal{opacity:1!important;transform:translateY(0)!important;transition:all .8s cubic-bezier(.22,1,.36,1)}.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal-d1{transition-delay:.1s}.reveal-d2{transition-delay:.2s}.reveal-d3{transition-delay:.3s}.reveal-d4{transition-delay:.4s}
 .confetti-bg{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;overflow:hidden}
 .confetti-bg .p{position:absolute;opacity:.35;animation:confetti-fall linear infinite}
 
@@ -61,12 +61,12 @@ html{scroll-behavior:smooth}body{font-family:var(--font);color:var(--text);backg
 /* HERO */
 .hero{position:relative;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:120px 40px 80px;background:linear-gradient(180deg,var(--cream) 0%,#fff 100%);overflow:hidden}
 .hero::before{content:'';position:absolute;top:-200px;right:-200px;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(232,98,44,.08),transparent 70%)}
-.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(232,98,44,.08);border:1px solid rgba(232,98,44,.15);padding:8px 20px;border-radius:980px;font-size:13px;font-weight:600;color:var(--warm);margin-bottom:32px;animation:none}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(232,98,44,.08);border:1px solid rgba(232,98,44,.15);padding:8px 20px;border-radius:980px;font-size:13px;font-weight:600;color:var(--warm);margin-bottom:32px;animation:fadeUp .8s ease-out}
 .hero-dot{width:6px;height:6px;border-radius:50%;background:var(--warm);animation:pulse-glow 2s infinite}
-.hero h1{font-family:var(--disp);font-size:clamp(42px,6vw,80px);font-weight:900;line-height:1.05;letter-spacing:-2px;color:var(--dark);max-width:900px;animation:none}
+.hero h1{font-family:var(--disp);font-size:clamp(42px,6vw,80px);font-weight:900;line-height:1.05;letter-spacing:-2px;color:var(--dark);max-width:900px;animation:fadeUp .8s ease-out .1s both}
 .hero h1 em{font-style:normal;background:linear-gradient(135deg,var(--warm),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.hero-sub{font-size:clamp(16px,2vw,20px);color:var(--sub);max-width:600px;margin:24px auto 0;line-height:1.6;animation:none}
-.hero-ctas{display:flex;gap:16px;margin-top:40px;animation:none;flex-wrap:wrap;justify-content:center}
+.hero-sub{font-size:clamp(16px,2vw,20px);color:var(--sub);max-width:600px;margin:24px auto 0;line-height:1.6;animation:fadeUp .8s ease-out .2s both}
+.hero-ctas{display:flex;gap:16px;margin-top:40px;animation:fadeUp .8s ease-out .3s both;flex-wrap:wrap;justify-content:center}
 .btn-hero{padding:16px 36px;border-radius:980px;font-size:16px;font-weight:600;text-decoration:none;transition:all .25s;display:inline-block}
 .btn-hero-primary{background:var(--warm);color:#fff;box-shadow:0 4px 24px rgba(232,98,44,.25)}.btn-hero-primary:hover{background:#d4551f;transform:translateY(-2px);box-shadow:0 8px 32px rgba(232,98,44,.35)}
 .btn-hero-secondary{background:var(--surface);color:var(--dark);border:1.5px solid rgba(0,0,0,.1)}.btn-hero-secondary:hover{border-color:var(--warm);color:var(--warm);transform:translateY(-2px)}
@@ -75,7 +75,7 @@ html{scroll-behavior:smooth}body{font-family:var(--font);color:var(--text);backg
 /* SHOWCASE */
 .showcase{position:relative;z-index:2;margin-top:-20px;padding:0 40px 80px}
 .showcase-frame{max-width:1100px;margin:0 auto;position:relative}
-.showcase-browser{background:var(--dark);border-radius:16px;overflow:hidden;box-shadow:0 40px 100px rgba(26,14,8,.2);animation:none}
+.showcase-browser{background:var(--dark);border-radius:16px;overflow:hidden;box-shadow:0 40px 100px rgba(26,14,8,.2);animation:fadeUp 1s ease-out .4s both}
 .showcase-bar{display:flex;align-items:center;gap:8px;padding:14px 20px;background:rgba(255,255,255,.06)}
 .showcase-dot{width:10px;height:10px;border-radius:50%}
 .showcase-url{flex:1;margin-left:12px;background:rgba(255,255,255,.08);border-radius:6px;padding:6px 14px;font-size:12px;color:rgba(255,255,255,.4);font-family:monospace}
@@ -165,6 +165,36 @@ html{scroll-behavior:smooth}body{font-family:var(--font);color:var(--text);backg
 .price-btn-p{background:var(--warm);color:#fff}.price-btn-p:hover{background:#d4551f}
 .price-btn-s{background:#fff;color:var(--dark);border:1.5px solid rgba(0,0,0,.1)}.price-btn-s:hover{border-color:var(--warm);color:var(--warm)}
 
+/* CONTACT SECTION */
+.contact{padding:100px 40px;background:#fff}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;max-width:1000px;margin:0 auto}
+.contact-left{display:flex;flex-direction:column;gap:24px}
+.contact-card{background:var(--cream);border:1px solid rgba(232,98,44,.08);border-radius:16px;padding:28px;transition:all .3s}
+.contact-card:hover{box-shadow:0 8px 32px rgba(232,98,44,.08)}
+.contact-card-icon{font-size:24px;margin-bottom:12px}
+.contact-card-label{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--muted);margin-bottom:4px}
+.contact-card-value{font-size:17px;font-weight:600;color:var(--dark)}
+.contact-card-value a{color:var(--dark);text-decoration:none;transition:color .2s}.contact-card-value a:hover{color:var(--warm)}
+.contact-book{background:linear-gradient(135deg,var(--warm),var(--gold));border-radius:16px;padding:28px;color:#fff;text-align:center;transition:all .3s;cursor:pointer;text-decoration:none;display:block}
+.contact-book:hover{transform:translateY(-3px);box-shadow:0 12px 40px rgba(232,98,44,.3)}
+.contact-book-icon{font-size:32px;margin-bottom:8px}
+.contact-book-title{font-size:18px;font-weight:700;margin-bottom:4px}
+.contact-book-sub{font-size:13px;opacity:.85}
+.contact-form{background:var(--cream);border:1px solid rgba(232,98,44,.08);border-radius:16px;padding:32px}
+.contact-form h3{font-size:20px;font-weight:700;margin-bottom:20px;color:var(--dark)}
+.cf-group{margin-bottom:16px}
+.cf-group label{display:block;font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.8px;color:var(--muted);margin-bottom:6px}
+.cf-group input,.cf-group textarea,.cf-group select{width:100%;padding:12px 16px;border:1.5px solid rgba(0,0,0,.08);border-radius:12px;font-size:15px;font-family:var(--font);color:var(--text);outline:none;transition:all .2s;background:#fff;resize:vertical}
+.cf-group input:focus,.cf-group textarea:focus,.cf-group select:focus{border-color:var(--warm);box-shadow:0 0 0 3px rgba(232,98,44,.1)}
+.cf-group textarea{min-height:100px}
+.cf-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.cf-submit{width:100%;padding:14px;border-radius:980px;font-size:15px;font-weight:600;cursor:pointer;transition:all .2s;border:none;font-family:var(--font);background:var(--warm);color:#fff;margin-top:8px}.cf-submit:hover{background:#d4551f;box-shadow:0 4px 16px rgba(232,98,44,.3)}
+.cf-success{display:none;text-align:center;padding:32px;color:var(--warm)}
+.cf-success-icon{font-size:48px;margin-bottom:12px}
+.cf-success-title{font-size:20px;font-weight:700;color:var(--dark);margin-bottom:4px}
+.cf-success-sub{font-size:14px;color:var(--sub)}
+@media(max-width:768px){.contact-grid{grid-template-columns:1fr}.cf-row{grid-template-columns:1fr}}
+
 /* FINAL CTA */
 .cta-final{padding:100px 40px;background:var(--dark);text-align:center;position:relative;overflow:hidden}
 .cta-final::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(232,98,44,.1),transparent 70%)}
@@ -186,6 +216,12 @@ footer{padding:48px 40px;background:var(--navy);color:rgba(255,255,255,.4);displ
 .proof-row{gap:24px}
 .steps{grid-template-columns:1fr 1fr}
 .portal-grid{grid-template-columns:1fr}
+.feat-grid{grid-template-columns:1fr}
+}
+@media(max-width:640px){
+  #live-stage [style*="grid-template-columns:repeat(5"]{grid-template-columns:1fr!important;gap:8px!important}
+  #live-stage [style*="grid-template-columns:repeat(5"] > div:nth-child(2),
+  #live-stage [style*="grid-template-columns:repeat(5"] > div:nth-child(4){display:none}
 }
 </style>
 </head>
@@ -200,9 +236,10 @@ footer{padding:48px 40px;background:var(--navy);color:rgba(255,255,255,.4);displ
       <svg class="nav-cap" width="18" height="12" viewBox="0 0 30 20" fill="none"><polygon points="15,0 30,8 15,16 0,8" fill="white" opacity=".95"/><polygon points="15,16 30,8 30,10 15,18 0,10 0,8" fill="white" opacity=".7"/><line x1="26" y1="8" x2="26" y2="16" stroke="white" stroke-width="1.2"/><circle cx="26" cy="16.5" r="1.2" fill="#f5a623"/></svg>
       GF
     </div>
-    <span class="nav-name">GradFare<span>by SENTRi</span></span>
+    <span class="nav-name">GradFare<span>by The Royal Accent Creations</span></span>
   </div>
   <div class="nav-links">
+    <a href="#live-stage">Live Stage</a>
     <a href="#features">Features</a>
     <a href="#how">How It Works</a>
     <a href="#portal">Student Portal</a>
@@ -214,9 +251,9 @@ footer{padding:48px 40px;background:var(--navy);color:rgba(255,255,255,.4);displ
 
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-badge"><span class="hero-dot"></span> Built for every institution that celebrates achievement</div>
+  <div class="hero-badge"><span class="hero-dot"></span> NEW: Live Stage Experience — One scan triggers every screen, speaker & livestream</div>
   <h1>Graduation should be a <em>celebration</em>, not a logistical nightmare</h1>
-  <p class="hero-sub">The all-in-one platform that transforms graduation chaos into a seamless, joyful experience — from student registration to the final cap toss. For universities, colleges, academies, and any institution that celebrates achievement.</p>
+  <p class="hero-sub">The all-in-one platform for graduation ceremonies — Live Stage sync, AI name pronunciation, Campus SSO, SIS integration, offline QR check-in, ceremony slides, and 16+ features included. Starting at $599. For universities, colleges, and high schools.</p>
   <div class="hero-ctas">
     <a href="https://app.gradfare.com" class="btn-hero btn-hero-primary">Start Free Trial</a>
     <a href="#portal" class="btn-hero btn-hero-secondary">See Student Portal</a>
@@ -232,7 +269,7 @@ footer{padding:48px 40px;background:var(--navy);color:rgba(255,255,255,.4);displ
         <div class="showcase-dot" style="background:#ff5f57"></div>
         <div class="showcase-dot" style="background:#ffbd2e"></div>
         <div class="showcase-dot" style="background:#28ca41"></div>
-        <div class="showcase-url">gradium.youruniversity.edu/dashboard</div>
+        <div class="showcase-url">app.gradfare.com/dashboard</div>
       </div>
       <svg viewBox="0 0 1100 580" xmlns="http://www.w3.org/2000/svg" class="showcase-img" style="background:#fef7f0">
         <defs><linearGradient id="g1" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#e8622c"/><stop offset="50%" stop-color="#f5a623"/><stop offset="100%" stop-color="#e8622c"/></linearGradient><linearGradient id="g2" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#e8622c"/><stop offset="100%" stop-color="#f5a623"/></linearGradient></defs>
@@ -313,28 +350,97 @@ footer{padding:48px 40px;background:var(--navy);color:rgba(255,255,255,.4);displ
 <!-- PROOF -->
 <section class="proof">
   <div class="proof-row reveal">
-    <div><div class="proof-num">5,000+</div><div class="proof-text">Students per event</div></div>
-    <div><div class="proof-num">4</div><div class="proof-text">Data import methods</div></div>
-    <div><div class="proof-num">&lt;2s</div><div class="proof-text">QR check-in per guest</div></div>
-    <div><div class="proof-num">100%</div><div class="proof-text">Student self-service</div></div>
+    <div><div class="proof-num">16+</div><div class="proof-text">Features competitors charge extra for</div></div>
+    <div><div class="proof-num">&lt;1s</div><div class="proof-text">Stage scan to screen sync</div></div>
+    <div><div class="proof-num">100%</div><div class="proof-text">Names pronounced correctly</div></div>
+    <div><div class="proof-num">80%</div><div class="proof-text">Less than legacy platforms</div></div>
+  </div>
+</section>
+
+<!-- ═══ LIVE STAGE EXPERIENCE — THE KILLER DIFFERENTIATOR ═══ -->
+<section id="live-stage" style="padding:100px 40px;background:var(--dark);position:relative;overflow:hidden">
+  <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 30% 50%,rgba(232,98,44,.15),transparent 60%)"></div>
+  <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 70% 80%,rgba(245,166,35,.1),transparent 50%)"></div>
+  <div style="max-width:1100px;margin:0 auto;position:relative;z-index:1">
+    <div style="display:inline-flex;align-items:center;gap:8px;background:rgba(232,98,44,.15);border:1px solid rgba(232,98,44,.3);padding:6px 16px;border-radius:980px;font-size:12px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:20px" class="reveal">⚡ Only on GradFare</div>
+    <h2 style="font-family:var(--disp);font-size:clamp(36px,5vw,60px);font-weight:900;color:#fff;letter-spacing:-2px;line-height:1.05;max-width:800px" class="reveal">One scan. Every screen.<br/>Every speaker. Every livestream.</h2>
+    <p style="font-size:clamp(16px,2vw,20px);color:rgba(255,255,255,.5);max-width:600px;margin:24px 0 48px;line-height:1.6" class="reveal">The GradFare Live Stage Experience synchronizes your entire ceremony with a single QR scan at the stage entrance.</p>
+    
+    <!-- Visual flow diagram -->
+    <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:16px;max-width:900px;align-items:center" class="reveal">
+      <div style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:24px 16px;text-align:center">
+        <div style="font-size:32px;margin-bottom:10px">📱</div>
+        <div style="font-size:13px;font-weight:700;color:#fff;margin-bottom:4px">QR Scan</div>
+        <div style="font-size:11px;color:rgba(255,255,255,.4)">Staff scans at stage entrance</div>
+      </div>
+      <div style="text-align:center;font-size:24px;color:var(--gold)">→</div>
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <div style="background:rgba(232,98,44,.12);border:1px solid rgba(232,98,44,.25);border-radius:12px;padding:14px 16px;text-align:center">
+          <div style="font-size:20px">🖥️</div>
+          <div style="font-size:11px;font-weight:600;color:var(--gold);margin-top:4px">Venue Screens</div>
+        </div>
+        <div style="background:rgba(232,98,44,.12);border:1px solid rgba(232,98,44,.25);border-radius:12px;padding:14px 16px;text-align:center">
+          <div style="font-size:20px">🔊</div>
+          <div style="font-size:11px;font-weight:600;color:var(--gold);margin-top:4px">Name Audio</div>
+        </div>
+        <div style="background:rgba(232,98,44,.12);border:1px solid rgba(232,98,44,.25);border-radius:12px;padding:14px 16px;text-align:center">
+          <div style="font-size:20px">📺</div>
+          <div style="font-size:11px;font-weight:600;color:var(--gold);margin-top:4px">Livestream</div>
+        </div>
+      </div>
+      <div style="text-align:center;font-size:24px;color:var(--gold)">→</div>
+      <div style="background:linear-gradient(135deg,var(--warm),var(--gold));border-radius:16px;padding:24px 16px;text-align:center">
+        <div style="font-size:32px;margin-bottom:10px">🎓</div>
+        <div style="font-size:13px;font-weight:700;color:#fff;margin-bottom:4px">Perfect Moment</div>
+        <div style="font-size:11px;color:rgba(255,255,255,.8)">Every graduate celebrated</div>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px;max-width:900px;margin-top:48px" class="reveal">
+      <div style="padding:20px">
+        <div style="font-size:28px;font-weight:800;color:var(--gold)">&lt; 1s</div>
+        <div style="font-size:13px;color:rgba(255,255,255,.5);margin-top:4px">Scan to screen latency</div>
+      </div>
+      <div style="padding:20px">
+        <div style="font-size:28px;font-weight:800;color:var(--gold)">0</div>
+        <div style="font-size:13px;color:rgba(255,255,255,.5);margin-top:4px">Manual coordination needed</div>
+      </div>
+      <div style="padding:20px">
+        <div style="font-size:28px;font-weight:800;color:var(--gold)">100%</div>
+        <div style="font-size:13px;color:rgba(255,255,255,.5);margin-top:4px">Names pronounced correctly</div>
+      </div>
+      <div style="padding:20px">
+        <div style="font-size:28px;font-weight:800;color:var(--gold)">Only</div>
+        <div style="font-size:13px;color:rgba(255,255,255,.5);margin-top:4px">platform with this feature</div>
+      </div>
+    </div>
   </div>
 </section>
 
 <!-- FEATURES -->
 <section class="features" id="features">
   <div class="sec-label reveal">Features</div>
-  <h2 class="sec-title reveal">Everything you need,<br/>nothing you don't</h2>
-  <p class="sec-sub reveal">One platform replaces your spreadsheets, email chains, and paper tickets.</p>
+  <h2 class="sec-title reveal">Everything your ceremony needs.<br/>One platform.</h2>
+  <p class="sec-sub reveal">16+ features that competitors charge $2K–$3K add-ons for. All included in every plan.</p>
   <div class="feat-grid">
-    <div class="feat-card reveal reveal-d2"><div class="feat-icon">⏱️</div><div class="feat-title">Live Countdown Timer</div><div class="feat-desc">A beautiful countdown on both admin dashboard and student portal builds excitement. Days, hours, minutes, seconds until the big moment. <a href="#countdown-demo" style="color:var(--warm);font-weight:600;text-decoration:none">Try it live ↓</a></div></div>
-    <div class="feat-card reveal reveal-d1"><div class="feat-icon">📊</div><div class="feat-title">Smart Data Import</div><div class="feat-desc">Upload from Excel, CSV, Google Sheets, or paste directly. GradFare auto-detects 40+ column name variations — however your registrar formats the data, it just works.</div></div>
-    <div class="feat-card reveal reveal-d2"><div class="feat-icon">🎫</div><div class="feat-title">Ticket Allowance System</div><div class="feat-desc">Set a default per event, override per student. Each graduate manages their own guest list through a personal portal — no staff bottleneck.</div></div>
-    <div class="feat-card reveal reveal-d3"><div class="feat-icon">📱</div><div class="feat-title">Student Self-Service Portal</div><div class="feat-desc">Every student gets a unique link — no app, no account. They add guests, get instant QR tickets, and manage invitations anytime from any device.</div></div>
-    <div class="feat-card reveal reveal-d1"><div class="feat-icon">📷</div><div class="feat-title">QR Camera Check-in</div><div class="feat-desc">Staff point their phone camera at guest QR codes. Instant confirmation with guest name, student, and event. Multiple staff scan simultaneously.</div></div>
-    <div class="feat-card reveal reveal-d2"><div class="feat-icon">🪑</div><div class="feat-title">Seating Arrangements</div><div class="feat-desc">Create venue sections with capacity limits. Assign students with real-time fill tracking. No more over-booked sections or confused guests.</div></div>
-    <div class="feat-card reveal reveal-d3"><div class="feat-icon">📋</div><div class="feat-title">Ceremony Program Builder</div><div class="feat-desc">Build your full agenda with speakers, music, awards, and timing. Reorder with one click. Total duration calculated automatically.</div></div>
-    <div class="feat-card reveal reveal-d1"><div class="feat-icon">🖨️</div><div class="feat-title">Print-Ready PDF Tickets</div><div class="feat-desc">Beautiful A6 tickets with QR codes, guest names, and seat assignments. Print one ticket or batch-print thousands in a single click.</div></div>
-    <div class="feat-card reveal reveal-d3"><div class="feat-icon">🎨</div><div class="feat-title">Custom School Branding</div><div class="feat-desc">4 built-in themes plus custom school colors. Add your logo, name, and banner image. Students see YOUR brand, not a generic tool.</div></div>
+    <!-- ★ NEW: 4 gap-filling features highlighted first -->
+    <div class="feat-card reveal reveal-d1" style="border:2px solid var(--warm);background:linear-gradient(135deg,rgba(254,247,240,.8),rgba(253,232,208,.5))"><div class="feat-icon">⚡</div><div class="feat-title">Live Stage Experience <span style="font-size:10px;background:var(--warm);color:#fff;padding:2px 8px;border-radius:980px;font-weight:700;vertical-align:middle;margin-left:6px">NEW</span></div><div class="feat-desc">One QR scan at the stage entrance triggers everything in real-time: ceremony slide on venue screens, name pronunciation through speakers, broadcast-quality lower-third on livestream, and check-in — all synchronized. <a href="#live-stage" style="color:var(--warm);font-weight:600;text-decoration:none">See how it works ↑</a></div></div>
+    <div class="feat-card reveal reveal-d2" style="border:2px solid var(--warm);background:linear-gradient(135deg,rgba(254,247,240,.8),rgba(253,232,208,.5))"><div class="feat-icon">🔐</div><div class="feat-title">Campus SSO / SAML <span style="font-size:10px;background:var(--warm);color:#fff;padding:2px 8px;border-radius:980px;font-weight:700;vertical-align:middle;margin-left:6px">NEW</span></div><div class="feat-desc">Students log in with their university credentials — Shibboleth, ADFS, Okta, Azure AD, CAS, Google Workspace. No separate accounts. IT teams approve, students click once.</div></div>
+    <div class="feat-card reveal reveal-d3" style="border:2px solid var(--warm);background:linear-gradient(135deg,rgba(254,247,240,.8),rgba(253,232,208,.5))"><div class="feat-icon">🔗</div><div class="feat-title">SIS Integration API <span style="font-size:10px;background:var(--warm);color:#fff;padding:2px 8px;border-radius:980px;font-weight:700;vertical-align:middle;margin-left:6px">NEW</span></div><div class="feat-desc">Connect Banner, PeopleSoft, Jenzabar, or any SIS that can call a webhook. Push eligible graduates directly into GradFare. No more CSV exports and manual data entry.</div></div>
+    <div class="feat-card reveal reveal-d1" style="border:2px solid var(--warm);background:linear-gradient(135deg,rgba(254,247,240,.8),rgba(253,232,208,.5))"><div class="feat-icon">📈</div><div class="feat-title">Advanced Analytics <span style="font-size:10px;background:var(--warm);color:#fff;padding:2px 8px;border-radius:980px;font-weight:700;vertical-align:middle;margin-left:6px">NEW</span></div><div class="feat-desc">Real-time attendance dashboards, check-in velocity charts, ceremony readiness scores, peak hour detection, and exportable CSV reports for your board or accreditation.</div></div>
+    <!-- Existing features -->
+    <div class="feat-card reveal reveal-d2"><div class="feat-icon">🗣️</div><div class="feat-title">AI Name Pronunciation</div><div class="feat-desc">Every graduate records their own name pronunciation. AI-generated phonetic text + student voice recording ensures every name is read correctly on stage. No more awkward pauses.</div></div>
+    <div class="feat-card reveal reveal-d3"><div class="feat-icon">📱</div><div class="feat-title">Student Self-Service Portal</div><div class="feat-desc">Every student gets a unique link — no app, no account. They add guests, record their name, order regalia, submit ceremony slides, and manage invitations from any device.</div></div>
+    <div class="feat-card reveal reveal-d1"><div class="feat-icon">📷</div><div class="feat-title">QR Check-in + Offline Mode</div><div class="feat-desc">Staff scan QR codes with their phone camera. Works offline too — download ticket data before the event, scan without WiFi, sync when connectivity returns. Perfect for outdoor venues.</div></div>
+    <div class="feat-card reveal reveal-d2"><div class="feat-icon">🎬</div><div class="feat-title">Virtual Ceremony Slides</div><div class="feat-desc">Each graduate submits a photo, degree, honors, and personal quote. The slideshow plays on venue screens or livestream — 8 seconds of screen time per student. Admin reviews and orders all slides.</div></div>
+    <div class="feat-card reveal reveal-d3"><div class="feat-icon">🎫</div><div class="feat-title">Ticket Waitlist & Lottery</div><div class="feat-desc">Students request extra tickets through their portal. Run a fair random lottery to distribute available seats. Automatic notifications when tickets are granted.</div></div>
+    <div class="feat-card reveal reveal-d1"><div class="feat-icon">👗</div><div class="feat-title">Regalia Ordering</div><div class="feat-desc">Students order caps, gowns, stoles, honor cords, and hoods through their portal. Admin gets size breakdowns for bulk purchasing. Track orders from pending to picked up.</div></div>
+    <div class="feat-card reveal reveal-d2"><div class="feat-icon">💬</div><div class="feat-title">Email & SMS Notifications</div><div class="feat-desc">Send portal links, ticket confirmations, check-in alerts, and event reminders via email and SMS. Branded templates. Bulk send to all students or targeted groups.</div></div>
+    <div class="feat-card reveal reveal-d3"><div class="feat-icon">📊</div><div class="feat-title">Smart Data Import</div><div class="feat-desc">Upload from Excel, CSV, or paste directly. GradFare auto-detects 40+ column name variations — however your registrar formats the data, it just works.</div></div>
+    <div class="feat-card reveal reveal-d1"><div class="feat-icon">🪑</div><div class="feat-title">Seating & Program Builder</div><div class="feat-desc">Create venue sections with capacity limits. Build your full ceremony agenda with speakers, music, awards, and timing. Real-time fill tracking. No more over-booked sections.</div></div>
+    <div class="feat-card reveal reveal-d2"><div class="feat-icon">🖨️</div><div class="feat-title">Print-Ready PDF Tickets</div><div class="feat-desc">Beautiful tickets with QR codes, guest names, and seat assignments. Print one or batch-print thousands. Students also get digital tickets via email and SMS.</div></div>
+    <div class="feat-card reveal reveal-d3"><div class="feat-icon">🎨</div><div class="feat-title">Custom School Branding</div><div class="feat-desc">Your school colors, logo, and name everywhere — student portal, tickets, emails, ceremony slides. Students see YOUR brand, not a generic tool.</div></div>
+    <div class="feat-card reveal reveal-d1"><div class="feat-icon">⏱️</div><div class="feat-title">Live Countdown Timer</div><div class="feat-desc">A beautiful countdown on both admin dashboard and student portal builds excitement. Days, hours, minutes, seconds until the big moment. <a href="#countdown-demo" style="color:var(--warm);font-weight:600;text-decoration:none">Try it live ↓</a></div></div>
   </div>
 </section>
 
@@ -344,10 +450,10 @@ footer{padding:48px 40px;background:var(--navy);color:rgba(255,255,255,.4);displ
   <h2 class="sec-title reveal">From roster to recessional<br/>in four steps</h2>
   <p class="sec-sub reveal">Set up in a day. Run smoothly for years.</p>
   <div class="steps">
-    <div class="step reveal reveal-d1"><div class="step-num">1</div><div class="step-title">Upload Your Students</div><div class="step-desc">Import from Excel, Google Sheets, or paste from anywhere. GradFare handles the rest.</div></div>
-    <div class="step reveal reveal-d2"><div class="step-num">2</div><div class="step-title">Students Invite Guests</div><div class="step-desc">Each graduate gets a unique portal link. They manage their own guest list — zero staff effort.</div></div>
-    <div class="step reveal reveal-d3"><div class="step-num">3</div><div class="step-title">Build Your Ceremony</div><div class="step-desc">Set up seating, build the program, configure branding. Everything in one beautiful dashboard.</div></div>
-    <div class="step reveal reveal-d4"><div class="step-num">4</div><div class="step-title">Scan & Celebrate</div><div class="step-desc">Staff scan QR codes with their phones. Guests check in instantly. You enjoy the ceremony.</div></div>
+    <div class="step reveal reveal-d1"><div class="step-num">1</div><div class="step-title">Upload Your Students</div><div class="step-desc">Import from Excel, CSV, or paste from anywhere. GradFare handles the rest — portal links sent via email and SMS automatically.</div></div>
+    <div class="step reveal reveal-d2"><div class="step-num">2</div><div class="step-title">Students Do Everything</div><div class="step-desc">Each graduate gets a unique portal: manage guests, record name pronunciation, submit ceremony slides, order regalia, and request extra tickets.</div></div>
+    <div class="step reveal reveal-d3"><div class="step-num">3</div><div class="step-title">Build Your Ceremony</div><div class="step-desc">Set up seating, build the program, review ceremony slides, approve name recordings. Order and approve slides for the venue screens.</div></div>
+    <div class="step reveal reveal-d4"><div class="step-num">4</div><div class="step-title">Scan & Celebrate</div><div class="step-desc">Staff scan QR codes (even offline). Slideshow plays on the big screen. Every name is read perfectly. You enjoy the ceremony.</div></div>
   </div>
 </section>
 
@@ -355,7 +461,7 @@ footer{padding:48px 40px;background:var(--navy);color:rgba(255,255,255,.4);displ
 <section class="portal-sec" id="portal">
   <div class="sec-label reveal">Student Experience</div>
   <h2 class="sec-title reveal">Your students will love it</h2>
-  <p class="sec-sub reveal">No app to download. No account to create. Just a beautiful link that works instantly on any device.</p>
+  <p class="sec-sub reveal">No app to download. No account to create. One link gives students access to tickets, name recording, regalia ordering, ceremony slides, and more.</p>
   <div class="portal-preview reveal" style="transition-delay:.2s">
     <div class="pp-hero">
       <div class="pp-logo"><svg width="20" height="14" viewBox="0 0 30 20" fill="none"><polygon points="15,0 30,8 15,16 0,8" fill="white" opacity=".95"/><polygon points="15,16 30,8 30,10 15,18 0,10 0,8" fill="white" opacity=".7"/></svg>GF</div>
@@ -384,7 +490,7 @@ footer{padding:48px 40px;background:var(--navy);color:rgba(255,255,255,.4);displ
       <div class="pp-guest"><div class="pp-guest-av">S</div><div class="pp-guest-name">Sarah Johnson</div><div class="pp-guest-badge" style="background:#f0faf3;color:#1a7a34">valid</div></div>
       <div class="pp-guest"><div class="pp-guest-av">J</div><div class="pp-guest-name">James Johnson</div><div class="pp-guest-badge" style="background:#f0faf3;color:#1a7a34">valid</div></div>
       <div class="pp-guest"><div class="pp-guest-av">R</div><div class="pp-guest-name">Grandma Rose</div><div class="pp-guest-badge" style="background:#f0f6ff;color:#0066cc">checked in</div></div>
-      <div class="pp-footer">Powered by <strong>SENTRi</strong> 🎓 <strong>GradFare</strong></div>
+      <div class="pp-footer">Powered by <strong>The Royal Accent Creations</strong> 🎓 <strong>GradFare</strong></div>
     </div>
   </div>
 </section>
@@ -416,133 +522,172 @@ footer{padding:48px 40px;background:var(--navy);color:rgba(255,255,255,.4);displ
   </div>
 </section>
 
+<!-- COMPARISON -->
+<section style="padding:80px 40px;background:var(--cream)">
+  <div class="sec-label reveal">Why GradFare</div>
+  <h2 class="sec-title reveal">Same features. Fraction of the cost.</h2>
+  <p class="sec-sub reveal">See how GradFare compares to legacy graduation management platforms.</p>
+  <div class="reveal" style="max-width:800px;margin:0 auto;overflow-x:auto">
+    <table style="width:100%;border-collapse:collapse;font-size:14px;background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,.06)">
+      <thead>
+        <tr style="background:var(--dark);color:#fff">
+          <th style="padding:16px 20px;text-align:left;font-weight:600">Feature</th>
+          <th style="padding:16px 20px;text-align:center;font-weight:600;background:linear-gradient(135deg,var(--warm),var(--gold));color:#fff">GradFare</th>
+          <th style="padding:16px 20px;text-align:center;font-weight:600;opacity:.8">Legacy Platforms</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="border-bottom:1px solid rgba(0,0,0,.04);background:rgba(232,98,44,.06)"><td style="padding:14px 20px;font-weight:700;color:var(--dark)">⚡ Live Stage Experience</td><td style="padding:14px 20px;text-align:center;font-weight:700;color:var(--warm)">✓ Included</td><td style="padding:14px 20px;text-align:center;color:var(--muted)">❌ Not available</td></tr>
+        <tr style="border-bottom:1px solid rgba(0,0,0,.04)"><td style="padding:14px 20px;color:var(--sub)">Campus SSO / SAML</td><td style="padding:14px 20px;text-align:center;font-weight:700;color:var(--warm)">✓ Included</td><td style="padding:14px 20px;text-align:center;color:var(--muted)">Enterprise only</td></tr>
+        <tr style="border-bottom:1px solid rgba(0,0,0,.04);background:rgba(254,247,240,.4)"><td style="padding:14px 20px;color:var(--sub)">SIS Integration (Banner, PeopleSoft)</td><td style="padding:14px 20px;text-align:center;font-weight:700;color:var(--warm)">✓ API + Webhook</td><td style="padding:14px 20px;text-align:center;color:var(--muted)">$3K+ add-on</td></tr>
+        <tr style="border-bottom:1px solid rgba(0,0,0,.04)"><td style="padding:14px 20px;color:var(--sub)">Advanced Analytics & Reports</td><td style="padding:14px 20px;text-align:center;font-weight:700;color:var(--warm)">✓ Included</td><td style="padding:14px 20px;text-align:center;color:var(--muted)">Enterprise only</td></tr>
+        <tr style="border-bottom:1px solid rgba(0,0,0,.04);background:rgba(254,247,240,.4)"><td style="padding:14px 20px;color:var(--sub)">AI Name Pronunciation</td><td style="padding:14px 20px;text-align:center;font-weight:700;color:var(--warm)">✓ Included</td><td style="padding:14px 20px;text-align:center;color:var(--muted)">$2K+ add-on</td></tr>
+        <tr style="border-bottom:1px solid rgba(0,0,0,.04);background:rgba(254,247,240,.4)"><td style="padding:14px 20px;color:var(--sub)">Offline QR Scanning</td><td style="padding:14px 20px;text-align:center;font-weight:700;color:var(--warm)">✓ Included</td><td style="padding:14px 20px;text-align:center;color:var(--muted)">Enterprise only</td></tr>
+        <tr style="border-bottom:1px solid rgba(0,0,0,.04)"><td style="padding:14px 20px;color:var(--sub)">Virtual Ceremony Slides</td><td style="padding:14px 20px;text-align:center;font-weight:700;color:var(--warm)">✓ Included</td><td style="padding:14px 20px;text-align:center;color:var(--muted)">$3K+ add-on</td></tr>
+        <tr style="border-bottom:1px solid rgba(0,0,0,.04);background:rgba(254,247,240,.4)"><td style="padding:14px 20px;color:var(--sub)">Ticket Waitlist & Lottery</td><td style="padding:14px 20px;text-align:center;font-weight:700;color:var(--warm)">✓ Included</td><td style="padding:14px 20px;text-align:center;color:var(--muted)">Enterprise only</td></tr>
+        <tr style="border-bottom:1px solid rgba(0,0,0,.04)"><td style="padding:14px 20px;color:var(--sub)">Regalia Ordering</td><td style="padding:14px 20px;text-align:center;font-weight:700;color:var(--warm)">✓ Included</td><td style="padding:14px 20px;text-align:center;color:var(--muted)">Separate vendor</td></tr>
+        <tr style="border-bottom:1px solid rgba(0,0,0,.04);background:rgba(254,247,240,.4)"><td style="padding:14px 20px;color:var(--sub)">Email & SMS Notifications</td><td style="padding:14px 20px;text-align:center;font-weight:700;color:var(--warm)">✓ Included</td><td style="padding:14px 20px;text-align:center;color:var(--muted)">✓ Included</td></tr>
+        <tr style="border-bottom:1px solid rgba(0,0,0,.04)"><td style="padding:14px 20px;color:var(--sub)">Self-Service Signup</td><td style="padding:14px 20px;text-align:center;font-weight:700;color:var(--warm)">✓ Instant</td><td style="padding:14px 20px;text-align:center;color:var(--muted)">Sales call required</td></tr>
+        <tr style="border-bottom:1px solid rgba(0,0,0,.04);background:rgba(254,247,240,.4)"><td style="padding:14px 20px;color:var(--sub)">Transparent Pricing</td><td style="padding:14px 20px;text-align:center;font-weight:700;color:var(--warm)">✓ On website</td><td style="padding:14px 20px;text-align:center;color:var(--muted)">Hidden / RFP only</td></tr>
+        <tr><td style="padding:16px 20px;font-weight:700;color:var(--dark)">Starting Price</td><td style="padding:16px 20px;text-align:center;font-weight:800;font-size:18px;color:var(--warm)">$599</td><td style="padding:16px 20px;text-align:center;font-weight:700;color:var(--muted)">$5,000+</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
 <!-- PRICING -->
 <section class="pricing" id="pricing">
   <div class="sec-label reveal">Pricing</div>
-  <h2 class="sec-title reveal">Simple, transparent pricing</h2>
-  <p class="sec-sub reveal">No hidden fees. No per-ticket charges. Just one price for everything.</p>
+  <h2 class="sec-title reveal">Transparent pricing.<br/>No surprises.</h2>
+  <p class="sec-sub reveal">Competitors charge $5K–$15K and hide their pricing. We don't. Every plan includes every feature.</p>
   <div class="price-grid">
     <div class="price-card reveal reveal-d1">
       <div class="price-name">Starter</div>
-      <div class="price-desc">For small colleges</div>
-      <div class="price-amt">$499</div>
-      <div class="price-per">per event</div>
-      <ul class="price-list"><li>Up to 500 students</li><li>All core features</li><li>Email support</li><li>1 admin account</li></ul>
+      <div class="price-desc">One ceremony, all features</div>
+      <div class="price-amt">$599</div>
+      <div class="price-per">per event · one-time</div>
+      <ul class="price-list">
+        <li>Up to 500 students</li>
+        <li>Unlimited guests</li>
+        <li>QR check-in + offline mode</li>
+        <li>AI name pronunciation</li>
+        <li>Student self-service portal</li>
+        <li>Email & SMS notifications</li>
+        <li>Ticket waitlist & lottery</li>
+        <li>Print-ready PDF tickets</li>
+        <li>2 staff accounts</li>
+        <li>Email support</li>
+      </ul>
       <button class="price-btn price-btn-s" onclick="location.href='https://app.gradfare.com'">Get Started</button>
     </div>
     <div class="price-card pop reveal reveal-d2">
-      <div class="price-name">University</div>
-      <div class="price-desc">For large institutions</div>
-      <div class="price-amt">$2,499</div>
-      <div class="price-per">per year · unlimited events</div>
-      <ul class="price-list"><li>Unlimited students</li><li>All features + branding</li><li>Priority support</li><li>10 staff accounts</li><li>Custom school themes</li></ul>
+      <div class="price-name">Professional</div>
+      <div class="price-desc">For growing institutions</div>
+      <div class="price-amt">$2,999</div>
+      <div class="price-per">per year · up to 3 events</div>
+      <ul class="price-list">
+        <li>Unlimited students</li>
+        <li>Everything in Starter, plus:</li>
+        <li>Live Stage Experience</li>
+        <li>Virtual ceremony slides</li>
+        <li>Regalia ordering system</li>
+        <li>Advanced analytics & reports</li>
+        <li>Custom school branding</li>
+        <li>Seating & program builder</li>
+        <li>5 staff accounts</li>
+        <li>Priority support</li>
+      </ul>
       <button class="price-btn price-btn-p" onclick="location.href='https://app.gradfare.com'">Start Free Trial</button>
     </div>
     <div class="price-card reveal reveal-d3">
       <div class="price-name">Enterprise</div>
-      <div class="price-desc">Multi-campus systems</div>
+      <div class="price-desc">Multi-campus, unlimited events</div>
       <div class="price-amt">Custom</div>
-      <div class="price-per">tailored to your needs</div>
-      <ul class="price-list"><li>Multi-campus support</li><li>SIS API integration</li><li>Dedicated account manager</li><li>On-premise deployment</li><li>SLA guarantee</li></ul>
-      <button class="price-btn price-btn-s" onclick="location.href='#cta'">Contact Sales</button>
+      <div class="price-per">tailored to your institution</div>
+      <ul class="price-list">
+        <li>Unlimited events & students</li>
+        <li>Everything in Professional, plus:</li>
+        <li>Campus SSO / SAML integration</li>
+        <li>SIS integration (Banner, PeopleSoft)</li>
+        <li>Live Stage Experience</li>
+        <li>Multi-campus support</li>
+        <li>Unlimited staff accounts</li>
+        <li>Dedicated account manager</li>
+        <li>API access & webhooks</li>
+        <li>Custom onboarding & SLA</li>
+      </ul>
+      <button class="price-btn price-btn-s" onclick="location.href='#cta'">Request a Quote</button>
     </div>
+  </div>
+  <div style="text-align:center;margin-top:40px;color:var(--sub);font-size:15px" class="reveal">
+    <strong style="color:var(--dark)">🎓 Spring 2026 Launch Special:</strong> Sign up before April 30 and get <strong style="color:var(--warm)">30% off</strong> your first year.
   </div>
 </section>
 
-<!-- CONTACT & CTA -->
-<style>
-.cta-contact{padding:80px 40px;max-width:1100px;margin:0 auto}
-.cta-contact .sec-label,.cta-contact .sec-title,.cta-contact .sec-sub{text-align:center}
-.cta-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-top:48px}
-.contact-cards{display:flex;flex-direction:column;gap:16px}
-.contact-card{background:var(--surface,#fff);border:1px solid #e5e5e7;border-radius:14px;padding:20px 24px;display:flex;align-items:center;gap:16px;transition:all .25s}
-.contact-card:hover{border-color:#e8622c;box-shadow:0 4px 20px rgba(232,98,42,.08)}
-.contact-card-icon{font-size:24px;width:48px;height:48px;background:#fef0e6;border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.contact-card-label{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.8px;color:#aeaeb2}
-.contact-card-value{font-size:15px;font-weight:600;margin-top:2px}
-.contact-card-value a{color:#1d1d1f;text-decoration:none}
-.contact-card-value a:hover{color:#e8622c}
-.btn-demo{display:inline-flex;align-items:center;gap:10px;padding:16px 32px;background:linear-gradient(135deg,#e8622c,#f5a623);color:#fff;text-decoration:none;border-radius:980px;font-weight:600;font-size:15px;transition:all .25s;margin-top:8px;border:none;cursor:pointer;width:100%;justify-content:center}
-.btn-demo:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(232,98,42,.3)}
-.contact-form{background:var(--surface,#fff);border:1px solid #e5e5e7;border-radius:14px;padding:32px}
-.contact-form h3{font-size:18px;font-weight:650;margin-bottom:20px}
-.cf-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
-.cf-field{display:flex;flex-direction:column;margin-bottom:12px}
-.cf-field label{font-size:12px;font-weight:600;color:#6e6e73;margin-bottom:4px}
-.cf-field input,.cf-field select,.cf-field textarea{padding:10px 14px;border:1px solid #e5e5e7;border-radius:10px;font-size:14px;font-family:inherit;outline:none;transition:border .2s}
-.cf-field input:focus,.cf-field select:focus,.cf-field textarea:focus{border-color:#e8622c}
-.cf-submit{padding:14px 28px;background:#1d1d1f;color:#fff;border:none;border-radius:980px;font-size:14px;font-weight:600;cursor:pointer;font-family:inherit;width:100%;transition:all .25s}
-.cf-submit:hover{background:#424245}
-.cf-success{text-align:center;padding:40px 20px;display:none}
-.cf-success.show{display:block}
-.cf-success .check{font-size:48px;margin-bottom:12px}
-.cf-success h3{font-size:20px;font-weight:650;margin-bottom:8px}
-.cf-success p{color:#6e6e73;font-size:14px;line-height:1.6}
-.cf-success a{color:#e8622c;font-weight:600;text-decoration:none}
-@media(max-width:768px){.cta-grid{grid-template-columns:1fr}.cf-row{grid-template-columns:1fr}}
-</style>
-
-<section class="cta-contact" id="cta">
-  <div class="sec-label">Get Started</div>
-  <h2 class="sec-title">Let's make your ceremony <em>unforgettable</em></h2>
-  <p class="sec-sub">Book a demo, send us a message, or reach out directly. We'd love to hear about your event.</p>
-
-  <div class="cta-grid">
-    <div class="contact-cards">
+<!-- CONTACT / GET STARTED -->
+<section class="contact" id="cta">
+  <div class="sec-label reveal">Get Started</div>
+  <h2 class="sec-title reveal">Let's make your ceremony<br/><em>unforgettable</em></h2>
+  <p class="sec-sub reveal">Book a demo, send us a message, or reach out directly. We'd love to hear about your event.</p>
+  <div class="contact-grid">
+    <!-- LEFT: Contact info + booking -->
+    <div class="contact-left reveal">
       <div class="contact-card">
         <div class="contact-card-icon">📧</div>
-        <div>
-          <div class="contact-card-label">Email Us</div>
-          <div class="contact-card-value"><a href="mailto:info@gradfare.com">info@gradfare.com</a></div>
-        </div>
+        <div class="contact-card-label">Email Us</div>
+        <div class="contact-card-value"><a href="/cdn-cgi/l/email-protection#acc5c2cac3eccbdecdc8cacddec982cfc3c1" style="color:var(--warm);text-decoration:none;font-weight:600"><span class="__cf_email__" data-cfemail="e68f888089a68194878280879483c885898b">[email&#160;protected]</span></a></div>
       </div>
       <div class="contact-card">
         <div class="contact-card-icon">📞</div>
-        <div>
-          <div class="contact-card-label">Call or Text</div>
-          <div class="contact-card-value"><a href="tel:+12407080015">(240) 708-0015</a></div>
-        </div>
+        <div class="contact-card-label">Call or Text</div>
+        <div class="contact-card-value"><a href="tel:+17038983835">703-898-3835</a></div>
       </div>
-      <a href="https://calendar.app.google/pkEsi5GKi2sQcWWa9" target="_blank" class="btn-demo">📅 Book a Free Demo</a>
+      <a href="https://calendar.app.google/pkEsi5GKi2sQcWWa9" target="_blank" class="contact-book">
+        <div class="contact-book-icon">📅</div>
+        <div class="contact-book-title">Book a Free Demo</div>
+        <div class="contact-book-sub">Pick a time on our calendar — 30 min, no commitment</div>
+      </a>
     </div>
-
-    <div class="contact-form" id="contactForm">
+    <!-- RIGHT: Contact form -->
+    <div class="contact-form reveal" style="transition-delay:.15s">
       <h3>Send us a message</h3>
-      <div class="cf-row">
-        <div class="cf-field"><label>First Name</label><input type="text" id="cf-fn" placeholder="First Name"/></div>
-        <div class="cf-field"><label>Last Name</label><input type="text" id="cf-ln" placeholder="Last Name"/></div>
+      <form id="contactForm" onsubmit="return handleSubmit(event)">
+        <div class="cf-row">
+          <div class="cf-group"><label>First Name</label><input type="text" id="cf-fname" required placeholder="John"/></div>
+          <div class="cf-group"><label>Last Name</label><input type="text" id="cf-lname" required placeholder="Smith"/></div>
+        </div>
+        <div class="cf-group"><label>Email</label><input type="email" id="cf-email" required placeholder="john@university.edu"/></div>
+        <div class="cf-group"><label>Organization</label><input type="text" id="cf-org" placeholder="University of Maryland"/></div>
+        <div class="cf-group">
+          <label>I'm interested in</label>
+          <select id="cf-interest">
+            <option value="demo">Scheduling a demo</option>
+            <option value="pricing">Pricing information</option>
+            <option value="starter">Starter plan ($599/event)</option>
+            <option value="professional">Professional plan ($2,999/year)</option>
+            <option value="enterprise">Enterprise (custom quote)</option>
+            <option value="other">Something else</option>
+          </select>
+        </div>
+        <div class="cf-group"><label>Message</label><textarea id="cf-msg" placeholder="Tell us about your upcoming ceremony — how many graduates, venue, date, etc."></textarea></div>
+        <button type="submit" class="cf-submit">Send Message</button>
+      </form>
+      <div class="cf-success" id="cfSuccess">
+        <div class="cf-success-icon">🎓</div>
+        <div class="cf-success-title">Message sent!</div>
+        <div class="cf-success-sub">We'll get back to you within 24 hours.<br/>Or <a href="https://calendar.app.google/pkEsi5GKi2sQcWWa9" target="_blank" style="color:var(--warm);font-weight:600">book a call now</a> to skip the wait.</div>
       </div>
-      <div class="cf-field"><label>Email</label><input type="email" id="cf-email" placeholder="you@institution.edu"/></div>
-      <div class="cf-field"><label>Organization</label><input type="text" id="cf-org" placeholder="Your university or institution"/></div>
-      <div class="cf-field"><label>I'm interested in</label>
-        <select id="cf-interest">
-          <option value="">Select...</option>
-          <option>Scheduling a demo</option>
-          <option>Pricing information</option>
-          <option>Starter plan (single event)</option>
-          <option>University plan (unlimited)</option>
-          <option>Enterprise / multi-campus</option>
-          <option>Something else</option>
-        </select>
-      </div>
-      <div class="cf-field"><label>Message</label><textarea id="cf-msg" rows="3" placeholder="Tell us about your event..."></textarea></div>
-      <button class="cf-submit" onclick="submitContact()">Send Message</button>
-    </div>
-    <div class="cf-success" id="contactSuccess">
-      <div class="check">🎓</div>
-      <h3>Message sent!</h3>
-      <p>We'll get back to you within 24 hours.<br/>Or <a href="https://calendar.app.google/pkEsi5GKi2sQcWWa9" target="_blank">book a call now</a> to skip the wait.</p>
     </div>
   </div>
 </section>
 
-<!-- FINAL BANNER -->
+<!-- FINAL CTA BANNER -->
 <section class="cta-final">
-  <h2 >Ready to get started?</h2>
-  <p  style="transition-delay:.1s">Join institutions that chose to celebrate smarter.</p>
-  <div style="display:flex;gap:16px;flex-wrap:wrap;justify-content:center;position:relative;z-index:1">
-    <a href="#cta" class="btn-hero btn-hero-primary" style="transition-delay:.2s">Send a Message</a>
-    <a href="https://calendar.app.google/pkEsi5GKi2sQcWWa9" target="_blank" class="btn-hero" style="transition-delay:.3s;background:rgba(255,255,255,.15);color:#fff;border:1px solid rgba(255,255,255,.3)">📅 Book a Demo</a>
+  <h2 class="reveal">Ready to get started?</h2>
+  <p class="reveal" style="transition-delay:.1s">Join institutions that chose to celebrate smarter.</p>
+  <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;position:relative;z-index:1">
+    <a href="#cta" class="btn-hero btn-hero-primary reveal" style="transition-delay:.2s">Send a Message</a>
+    <a href="https://calendar.app.google/pkEsi5GKi2sQcWWa9" target="_blank" class="btn-hero btn-hero-secondary reveal" style="transition-delay:.3s;border-color:rgba(255,255,255,.2);color:#fff">📅 Book a Demo</a>
   </div>
 </section>
 
@@ -552,12 +697,12 @@ footer{padding:48px 40px;background:var(--navy);color:rgba(255,255,255,.4);displ
     <div style="width:24px;height:24px;background:linear-gradient(135deg,#e8622c,#f5a623);border-radius:6px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:10px;letter-spacing:-0.5px">GF</div>
     GradFare
   </div>
-  <div>© 2026 SENTRi. GradFare™ All rights reserved.</div>
+  <div>© 2026 The Royal Accent Creations. GradFare™ All rights reserved.</div>
   <div class="footer-links"><a href="#">Privacy</a><a href="#">Terms</a><a href="#cta">Contact</a></div>
 </footer>
 
 <!-- SCRIPTS -->
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 // Confetti
 const cb=document.getElementById('confetti');
 const colors=['#e8622c','#f5a623','#30d158','#0a84ff','#af52de'];
@@ -570,6 +715,10 @@ window.addEventListener('scroll',()=>{nav.classList.toggle('scrolled',window.scr
 // Scroll reveal
 const obs=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}})},{threshold:0.02,rootMargin:'0px 0px 0px 0px'});
 document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+// Fallback: force reveal all elements after 2 seconds in case observer misses
+setTimeout(()=>{document.querySelectorAll('.reveal:not(.visible)').forEach(el=>el.classList.add('visible'))},2000);
+// Also trigger on any scroll
+window.addEventListener('scroll',()=>{document.querySelectorAll('.reveal:not(.visible)').forEach(el=>{const r=el.getBoundingClientRect();if(r.top<window.innerHeight+100)el.classList.add('visible')})},{passive:true});
 
 // ═══ COUNTDOWN TIMER ═══
 let cdInterval=null;
@@ -649,23 +798,15 @@ function cdStop(){
 cdRender();
 
 // ═══ CONTACT FORM ═══
-function submitContact(){
-  const fn=document.getElementById('cf-fn').value;
-  const ln=document.getElementById('cf-ln').value;
+function handleSubmit(e){
+  e.preventDefault();
+  const fname=document.getElementById('cf-fname').value;
+  const lname=document.getElementById('cf-lname').value;
   const email=document.getElementById('cf-email').value;
   const org=document.getElementById('cf-org').value;
   const interest=document.getElementById('cf-interest').value;
   const msg=document.getElementById('cf-msg').value;
-  const subject=encodeURIComponent('GradFare Inquiry from '+fn+' '+ln+' — '+org);
-  const body=encodeURIComponent('Name: '+fn+' '+ln+'\nEmail: '+email+'\nOrganization: '+org+'\nInterested in: '+interest+'\n\nMessage:\n'+msg);
-  window.open('mailto:info@gradfare.com?subject='+subject+'&body='+body);
-  document.getElementById('contactForm').style.display='none';
-  document.getElementById('contactSuccess').classList.add('show');
-}
-
-// ═══ REVEAL FALLBACK ═══
-setTimeout(()=>{document.querySelectorAll('.reveal:not(.visible)').forEach(el=>el.classList.add('visible'))},2000);
-window.addEventListener('scroll',()=>{document.querySelectorAll('.reveal:not(.visible)').forEach(el=>{const r=el.getBoundingClientRect();if(r.top<window.innerHeight+100)el.classList.add('visible')})},{passive:true});
-</script>
-</body>
-</html>
+  
+  const subject=encodeURIComponent('GradFare Inquiry from '+fname+' '+lname+' — '+interest);
+  const body=encodeURIComponent(
+    'Name: '+fnam
