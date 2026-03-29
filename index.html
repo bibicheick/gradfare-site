@@ -642,7 +642,7 @@ footer{padding:48px 40px;background:var(--navy);color:rgba(255,255,255,.4);displ
         <div class="contact-card-label">Call or Text</div>
         <div class="contact-card-value"><a href="tel:+17038983835">703-898-3835</a></div>
       </div>
-      <a href="https://calendar.app.google/VUpKd3JTaJt2kPiQA" target="_blank" class="contact-book">
+      <a href="https://calendar.app.google/pkEsi5GKi2sQcWWa9" target="_blank" class="contact-book">
         <div class="contact-book-icon">📅</div>
         <div class="contact-book-title">Book a Free Demo</div>
         <div class="contact-book-sub">Pick a time on our calendar — 30 min, no commitment</div>
@@ -651,16 +651,16 @@ footer{padding:48px 40px;background:var(--navy);color:rgba(255,255,255,.4);displ
     <!-- RIGHT: Contact form -->
     <div class="contact-form reveal" style="transition-delay:.15s">
       <h3>Send us a message</h3>
-      <form id="contactForm" onsubmit="return handleSubmit(event)">
+      <form id="contactForm" action="https://formsubmit.co/info@theroyalaccentcreations.com" method="POST"><input type="hidden" name="_subject" value="New GradFare Inquiry"><input type="hidden" name="_captcha" value="false"><input type="hidden" name="_next" value="https://www.gradfare.com"><input type="text" name="_honey" style="display:none">
         <div class="cf-row">
-          <div class="cf-group"><label>First Name</label><input type="text" id="cf-fname" required placeholder="John"/></div>
-          <div class="cf-group"><label>Last Name</label><input type="text" id="cf-lname" required placeholder="Smith"/></div>
+          <div class="cf-group"><label>First Name</label><input type="text" id="cf-fname" name="First Name" required placeholder="John"/></div>
+          <div class="cf-group"><label>Last Name</label><input type="text" id="cf-lname" name="Last Name" required placeholder="Smith"/></div>
         </div>
-        <div class="cf-group"><label>Email</label><input type="email" id="cf-email" required placeholder="john@university.edu"/></div>
-        <div class="cf-group"><label>Organization</label><input type="text" id="cf-org" placeholder="University of Maryland"/></div>
+        <div class="cf-group"><label>Email</label><input type="email" id="cf-email" name="Email" required placeholder="john@university.edu"/></div>
+        <div class="cf-group"><label>Organization</label><input type="text" id="cf-org" name="Organization" placeholder="University of Maryland"/></div>
         <div class="cf-group">
           <label>I'm interested in</label>
-          <select id="cf-interest">
+          <select id="cf-interest" name="Interest">
             <option value="demo">Scheduling a demo</option>
             <option value="pricing">Pricing information</option>
             <option value="starter">Starter plan ($599/event)</option>
@@ -669,13 +669,13 @@ footer{padding:48px 40px;background:var(--navy);color:rgba(255,255,255,.4);displ
             <option value="other">Something else</option>
           </select>
         </div>
-        <div class="cf-group"><label>Message</label><textarea id="cf-msg" placeholder="Tell us about your upcoming ceremony — how many graduates, venue, date, etc."></textarea></div>
+        <div class="cf-group"><label>Message</label><textarea id="cf-msg" name="Message" placeholder="Tell us about your upcoming ceremony — how many graduates, venue, date, etc."></textarea></div>
         <button type="submit" class="cf-submit">Send Message</button>
       </form>
       <div class="cf-success" id="cfSuccess">
         <div class="cf-success-icon">🎓</div>
         <div class="cf-success-title">Message sent!</div>
-        <div class="cf-success-sub">We'll get back to you within 24 hours.<br/>Or <a href="https://calendar.app.google/VUpKd3JTaJt2kPiQA" target="_blank" style="color:var(--warm);font-weight:600">book a call now</a> to skip the wait.</div>
+        <div class="cf-success-sub">We'll get back to you within 24 hours.<br/>Or <a href="https://calendar.app.google/pkEsi5GKi2sQcWWa9" target="_blank" style="color:var(--warm);font-weight:600">book a call now</a> to skip the wait.</div>
       </div>
     </div>
   </div>
@@ -687,7 +687,7 @@ footer{padding:48px 40px;background:var(--navy);color:rgba(255,255,255,.4);displ
   <p class="reveal" style="transition-delay:.1s">Join institutions that chose to celebrate smarter.</p>
   <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;position:relative;z-index:1">
     <a href="#cta" class="btn-hero btn-hero-primary reveal" style="transition-delay:.2s">Send a Message</a>
-    <a href="https://calendar.app.google/VUpKd3JTaJt2kPiQA" target="_blank" class="btn-hero btn-hero-secondary reveal" style="transition-delay:.3s;border-color:rgba(255,255,255,.2);color:#fff">📅 Book a Demo</a>
+    <a href="https://calendar.app.google/pkEsi5GKi2sQcWWa9" target="_blank" class="btn-hero btn-hero-secondary reveal" style="transition-delay:.3s;border-color:rgba(255,255,255,.2);color:#fff">📅 Book a Demo</a>
   </div>
 </section>
 
@@ -806,7 +806,59 @@ function handleSubmit(e){
   const org=document.getElementById('cf-org').value;
   const interest=document.getElementById('cf-interest').value;
   const msg=document.getElementById('cf-msg').value;
-  
-  const subject=encodeURIComponent('GradFare Inquiry from '+fname+' '+lname+' — '+interest);
-  const body=encodeURIComponent(
-    'Name: '+fnam
+
+  const btn=document.querySelector('#contactForm button[type=submit], #contactForm .cf-submit');
+  if(btn){btn.disabled=true;btn.textContent='Sending...';}
+
+  // Send via FormSubmit.co (free, no signup needed)
+  fetch('https://formsubmit.co/ajax/info@theroyalaccentcreations.com',{
+    method:'POST',
+    headers:{'Content-Type':'application/json','Accept':'application/json'},
+    body:JSON.stringify({
+      name:fname+' '+lname,
+      email:email,
+      organization:org,
+      interest:interest,
+      message:msg,
+      _subject:'GradFare Inquiry from '+fname+' '+lname+' — '+interest,
+      _template:'table'
+    })
+  })
+  .then(r=>r.json())
+  .then(data=>{
+    if(data.success){
+      document.getElementById('contactForm').innerHTML='<div style="text-align:center;padding:40px 20px"><div style="font-size:48px;margin-bottom:16px">🎉</div><h3 style="font-size:20px;color:var(--dark);margin-bottom:8px">Message Sent!</h3><p style="color:var(--sub);font-size:14px">Thank you, '+fname+'. We\'ll get back to you within 24 hours.</p></div>';
+    } else {
+      // Fallback to mailto
+      const subject=encodeURIComponent('GradFare Inquiry from '+fname+' '+lname+' — '+interest);
+      const body=encodeURIComponent('Name: '+fname+' '+lname+'\nEmail: '+email+'\nOrganization: '+org+'\nInterested in: '+interest+'\n\nMessage:\n'+msg);
+      window.location.href='mailto:info@theroyalaccentcreations.com?subject='+subject+'&body='+body;
+      if(btn){btn.disabled=false;btn.textContent='Send Message';}
+    }
+  })
+  .catch(()=>{
+    // Fallback to mailto on error
+    const subject=encodeURIComponent('GradFare Inquiry from '+fname+' '+lname+' — '+interest);
+    const body=encodeURIComponent('Name: '+fname+' '+lname+'\nEmail: '+email+'\nOrganization: '+org+'\nInterested in: '+interest+'\n\nMessage:\n'+msg);
+    window.location.href='mailto:info@theroyalaccentcreations.com?subject='+subject+'&body='+body;
+    if(btn){btn.disabled=false;btn.textContent='Send Message';}
+  });
+  return false;
+}
+
+// Scroll reveal
+const obs=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('revealed');obs.unobserve(e.target)}})},{threshold:0.1,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+// Smooth scroll
+document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener('click',e=>{e.preventDefault();const t=document.querySelector(a.getAttribute('href'));if(t)t.scrollIntoView({behavior:'smooth',block:'start'})})});
+
+// Mobile nav toggle
+const navToggle=document.querySelector('.nav-toggle');
+const navLinks=document.querySelector('.nav-links');
+if(navToggle&&navLinks){navToggle.addEventListener('click',()=>{navLinks.classList.toggle('nav-open')})}
+
+</script>
+</body>
+</html>
+
